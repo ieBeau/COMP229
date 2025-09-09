@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   preview: {
     allowedHosts: [
-      'comp229-portfolio-245p.onrender.com'
+      'comp229-moreau-portfolio.onrender.com'
     ]
   }
 })
