@@ -1,0 +1,10 @@
+<div align="center">
+
+  <h1>Web Application Development</h1>
+  <p>All assignments and lessons are stored in this repository.</p>
+
+  <h2>Course Assignments</h2>
+
+  <h2>Course Exams</h2>
+
+</div>
