@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Education from "./components/Education";
-import Projects from "./components/Projects";
+import Home from "./scenes/Home";
+import About from "./scenes/About";
+import Projects from "./scenes/Projects";
+import Education from "./scenes/Education";
+import Services from "./scenes/Services";
+import Contact from "./scenes/Contact";
 
 const MainRouter = () => {
     return (
@@ -13,9 +14,10 @@ const MainRouter = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/education" element={<Education />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/education" element={<Education />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
         </>
     );

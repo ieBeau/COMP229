@@ -1,0 +1,27 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.layout .title {
+    color: white;
+    margin: 0 20px;
+    /* font-size: 2.5em; */
+    flex-grow: 1;
+    text-align: left;
+}
+
+.layout nav {
+    display: flex;
+    margin-left: auto;
+    font-size: larger;
+    gap: 35px;
+}
+
+.layout.active {
+    background-color: #333;
+    color: white;
+}   

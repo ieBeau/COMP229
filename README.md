@@ -4,6 +4,7 @@
   <p>All assignments and lessons are stored in this repository.</p>
 
   <h2>Course Assignments</h2>
+  [Personal Portfolio](https://comp229-moreau-portfolio.onrender.com)
 
   <h2>Course Exams</h2>
 
