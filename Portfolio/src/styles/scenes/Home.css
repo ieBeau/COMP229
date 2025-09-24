@@ -5,9 +5,10 @@
 }
 
 .mission-statement {
-    /* font-size: 1.2em; */
-    /* line-height: 1.6; */
     max-width: 800px;
     text-align: left;
-    /* margin-top: 10px; */
+    background-color: rgb(30, 30, 30);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }

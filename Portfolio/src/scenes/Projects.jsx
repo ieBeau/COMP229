@@ -1,10 +1,10 @@
 import '../styles/scenes/Projects.css';
 
-import Project from "../components/Project"
+import Project from "../components/Project";
 
-import logoCalculator from '../assets/images/project-calculator-logo.png'
-import logoFitnessTrainer from '../assets/images/project-fitness-logo.png'
-import logoStockTrading from '../assets/images/project-trading-logo.png'
+import logoCalculator from '../assets/images/project-calculator-logo.png';
+import logoFitnessTrainer from '../assets/images/project-fitness-logo.png';
+import logoStockTrading from '../assets/images/project-trading-logo.png';
 
 export default function Projects () {
     return (

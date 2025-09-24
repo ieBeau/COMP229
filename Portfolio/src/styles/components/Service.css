@@ -1,4 +1,4 @@
-.project {
+.service {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,19 +11,19 @@
     cursor: pointer;
 }
 
-.project:hover {
+.service:hover {
     background-color: rgb(42, 42, 42);
 }
 
-.project ul {
+.service ul {
     text-align: left;
 }
 
-.project img {
+.service img {
     border-radius: 10px;
 }
 
-.project .details {
+.service .details {
     margin-left: 30px;
     text-align: left;
 }

@@ -1,9 +1,9 @@
 import '../styles/components/School.css';
 
-export default function School({ name, degree, program, gpa = "", graduation, location, image = "/logo.svg" }) {
+export default function School({ name, degree, program, gpa = "", graduation, location, image = "/logo.svg", url = "" }) {
 
     return (
-        <div className="school">
+        <div className="school" onClick={() => window.open(url, "_blank")}>
             <img src={image} alt={name} width={100} height={100} />
 
             <div className='details'>

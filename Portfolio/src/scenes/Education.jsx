@@ -18,6 +18,7 @@ export default function Education () {
                     graduation="December 2027"
                     location="Toronto, ON"
                     image={logoCentennialCollege}
+                    url="https://www.centennialcollege.ca/programs-courses/full-time/software-engineering-technology-online"
                 />
             </div>
 
