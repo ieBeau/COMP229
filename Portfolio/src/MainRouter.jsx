@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import Header from "./components/Header";
 import Home from "./scenes/Home";
 import About from "./scenes/About";
 import Projects from "./scenes/Projects";
@@ -10,7 +10,7 @@ import Contact from "./scenes/Contact";
 const MainRouter = () => {
     return (
         <>
-            <Layout />
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
