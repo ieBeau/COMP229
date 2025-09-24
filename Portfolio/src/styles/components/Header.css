@@ -5,7 +5,8 @@
 }
 
 .logo {
-    width: 225px;
+    /* width: 225px; */
+    width: 375px;
     height: auto;
     cursor: pointer;
     /* background-color: green; */
@@ -18,7 +19,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding-bottom: 30px;
+    padding-bottom: 75px;
 }
 
 .layout .title {
@@ -35,7 +36,7 @@
     /* right: 20px; */
     /* margin-top: 135px; */
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 50px;
     font-size: larger;
     color: white;
     gap: 35px;
@@ -50,20 +51,18 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 165px;
+    height: 259.5px;
     justify-content: center;
     gap: 185px;
 }
 
 .layout .header-lines .line {
     align-self: flex-end;
-    height: 2.5px;
+    height: 4.9px;
     width: 100%;
     background-color: white;
     bottom: 0;
     margin: 0;
-    /* margin-top: auto; */
-    opacity: 0.99;
     box-shadow: 0 0 1px 0 white;
 }
 
@@ -71,12 +70,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* min-width: 5%; */
 }
 
 .layout .header-lines nav {
     align-self: flex-end;
     margin-top: auto;
+    margin-bottom: 20px;
 }
 
 link {
@@ -84,11 +83,11 @@ link {
     color: white;
 }
 
+
 @media (max-width: 1300px) {
     .layout .header-lines nav {
         flex-direction: column;
         gap: 15px;
-        align-items: flex-end;
         font-size: 60%;
     }
 }

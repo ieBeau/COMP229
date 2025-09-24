@@ -7,20 +7,27 @@
 .contact-info {
     display: flex;
     flex-direction: column;
-    /* gap: 5px; */
-    /* margin-bottom: 20px; */
     text-align: left;
     align-self: flex-start;
+    gap: 20px;
+}
+
+.contact-info a {
+    font-weight: normal;
 }
 
 .contact-form { 
     display: flex; 
     flex-direction: column; 
     gap: 10px; 
-    width: 400px; 
-    width: 400px; 
-    text-align: left; 
+    width: 450px;
+    text-align: left;
 }
+
+/* .contact-form button { 
+    align-self: center;
+    width: 400px;
+} */
 
 .contact-form label { 
     font-weight: bold; 
@@ -32,8 +39,9 @@
     border: 1px solid #ccc; 
     border-radius: 4px; 
     font-size: 16px; 
-    min-width: 400px;
-    max-width: 400px;
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-form textarea {

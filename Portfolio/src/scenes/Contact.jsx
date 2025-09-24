@@ -12,11 +12,11 @@ export default function Contact () {
 
             <div className='contact-container'>
                 <div className="contact-info">
-                    <p><b>Email:</b> contact.pmoreau@gmail.com</p>
-                    <p><b>Phone:</b> 647-309-3474</p>
-                    <p><b>Address:</b> Markham, ON, Canada</p>
-                    <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/pierre-moreau/" target="_blank">linkedin.com/in/pierre-moreau</a></p>
-                    <p><b>GitHub:</b> <a href="https://github.com/ieBeau" target="_blank">github.com/ieBeau</a></p>
+                    <div><b>Email:</b> contact.pmoreau@gmail.com</div>
+                    <div><b>Phone:</b> 647-309-3474</div>
+                    <div><b>Address:</b> Markham, ON, Canada</div>
+                    <div><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/pierre-moreau/" target="_blank">linkedin.com/in/pierre-moreau</a></div>
+                    <div><b>GitHub:</b> <a href="https://github.com/ieBeau" target="_blank">github.com/ieBeau</a></div>
                 </div>
 
                 {/* Direct the user to the home page */}
