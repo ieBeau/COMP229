@@ -1,7 +1,7 @@
 import '../styles/components/Header.css'
 
 import { Link } from 'react-router-dom'
-import BackgroundHeader from './backgrounds/BackgroundHeader';
+import HeaderBackground from './backgrounds/HeaderBackground';
 import MainLogo from './MainLogo';
 
 export default function Layout() {
@@ -11,7 +11,7 @@ export default function Layout() {
             
             <div className="header-lines">
 
-                <BackgroundHeader />
+                <HeaderBackground />
                 
                 <div className="line" />
 
