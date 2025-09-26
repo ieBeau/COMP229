@@ -1,12 +1,12 @@
 import '../styles/scenes/About.css';
 
 import headshot from '../assets/images/headshot.png'
-import PDF from '../components/PDF'
+import PDF from '../components/PDF.jsx';
 
 export default function About () {
+
     return (
         <div className='about-me'>
-
             <div className="page-title">ABOUT ME</div>
 
             <div className='summary'>
@@ -26,7 +26,6 @@ export default function About () {
             </div>
 
             <PDF />
-
         </div>
     )
 }
