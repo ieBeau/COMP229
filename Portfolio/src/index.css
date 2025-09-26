@@ -19,7 +19,7 @@ a {
   /* font-weight: 500; */
   /* font-weight: lighter; */
   /* color: #646cff; */
-  font-size: smaller;
+  /* font-size: smaller; */
   letter-spacing: 1.25px;
   color: white;
   text-decoration: inherit;
@@ -35,6 +35,7 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -55,11 +56,21 @@ button {
 }
 button:hover {
   /* border-color: #646cff; */
-  border-color: white;
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.page-title {
+    color: white;
+    font-weight: lighter;
+    letter-spacing: 1.5px;
+    transition: color 0.3s;
+    font-size: 62px;
+    padding-bottom: 30px;
 }
 
 @media (prefers-color-scheme: light) {

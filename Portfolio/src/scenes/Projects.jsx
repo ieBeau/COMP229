@@ -1,32 +1,32 @@
 import '../styles/scenes/Projects.css';
 
-import Project from "../components/Project";
+import Project from "../components/cards/Project.jsx";
 
-import logoCalculator from '../assets/images/project-calculator-logo.png';
-import logoFitnessTrainer from '../assets/images/project-fitness-logo.png';
-import logoStockTrading from '../assets/images/project-trading-logo.png';
+import logoCalculator from '../assets/images/projects/project-calculator-logo.png';
+import logoFitnessTrainer from '../assets/images/projects/project-fitness-logo.png';
+import logoStockTrading from '../assets/images/projects/project-trading-logo.png';
 
 export default function Projects () {
     return (
         <div className="projects">
-            <h1>Personal Projects</h1>
+            <div className="page-title">PERSONAL PROJECTS</div>
 
             <div className="list">
                 <Project
                     name="Fitness Trainer"
                     descriptions={[
-                        "Developed an AI-driven system to generate personalized workout plans based on user profiles",
+                        "Developed an AI-driven system to generate personalized workout plans for users",
                         "Designed and implemented features to track and analyze historical workout data",
-                        "Leveraged Google Cloud Platform web services for automated scheduling of daily API calls"
+                        "Leveraged Google Cloud Platform web services for automated scheduling of API calls"
                     ]}
                     image={logoFitnessTrainer}
                 />
                 <Project
                     name="Calculator Hub"
                     descriptions={[
-                        "Maintained a comprehensive database of international currency rates using Firebase for distributed storage",
+                        "Maintained a comprehensive database of international currency rates",
                         "Automated currency rate updates by scheduling API calls via Google Cloud Platform",
-                        "Enabled offline functionality to allow users to access previous conversion rates without an internet connection"
+                        "Enabled offline functionality to allow users to access previous conversion rates"
                     ]}
                     image={logoCalculator}
                     size={100}

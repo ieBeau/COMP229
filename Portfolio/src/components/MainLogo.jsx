@@ -10,7 +10,7 @@ export default function MainLogo() {
 
     return (
         <div className='main-logo'>
-            <img className='logo' src={logo} alt="Logo" onClick={() => navigate('/')} />
+            <img className="logo" src={logo} alt="Logo" onClick={() => navigate('/')} />
             <div className='background' />
         </div>
     );

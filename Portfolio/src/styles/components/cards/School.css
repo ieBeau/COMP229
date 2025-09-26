@@ -3,7 +3,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin: 35px;
     background-color: #242424;
     padding: 20px;
     border-radius: 10px;
@@ -12,7 +11,9 @@
 }
 
 .school:hover {
-    background-color: rgb(42, 42, 42);
+    /* background-color: rgb(42, 42, 42); */
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
 }
 
 .school h2 {
@@ -23,13 +24,20 @@
     margin: 0;
 }
 
+.school img {
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+
 .school .details {
     height: 100px;
-    width: 450px;
+    /* width: 450px; */
+    width: 100%;
     margin-left: 30px;
     text-align: left;
     justify-content: space-between;
-    /* line-height: 0.75; */
 }
 
 .additional-info {
@@ -38,5 +46,4 @@
     font-style: italic;
     color: gray;
     justify-content: space-between;
-    /* line-height: 0.75; */
 }

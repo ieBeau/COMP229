@@ -1,4 +1,4 @@
-import '../../styles/components/BackgroundHeader.css';
+import '../../styles/components/backgrounds/BackgroundHeader.css';
 
 import Hexagon from '../shapes/Hexagon';
 import AnimatedLight from '../animations/AnimatedLight';

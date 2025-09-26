@@ -9,28 +9,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding-bottom: 125px;
+    padding-bottom: 140px;
     overflow-x: hidden;
 }
 
 .layout .title {
     color: white;
     margin: 0 20px;
-    /* font-size: 2.5em; */
     flex-grow: 1;
     text-align: left;
-}
-
-.layout nav {
-    /* position: absolute; */
-    display: flex;
-    /* right: 20px; */
-    /* margin-top: 135px; */
-    margin-left: auto;
-    margin-right: 50px;
-    font-size: larger;
-    color: white;
-    gap: 20px;
 }
 
 .layout.active {
@@ -38,7 +25,7 @@
     color: white;
 }  
 
-.layout .header-lines {
+.header-lines {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -46,10 +33,10 @@
     height: 259.4px;
     justify-content: center;
     /* gap: 320px; */
-    gap: 185px;
+    gap: 180px;
 }
 
-.layout .header-lines .line {
+.header-lines .line {
     align-self: flex-end;
     height: 3.8px;
     width: 100%;
@@ -58,22 +45,26 @@
     margin: 0;
     box-shadow: 0 0 1px 0 white;
     border-radius: 8px;
+    z-index: 1;
 }
 
-.layout .header-lines .navigation {
+
+.header-lines .navigation {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.layout .header-lines nav {
+.header-lines nav {
+    display: flex;
     align-self: flex-end;
-    margin-top: auto;
-    margin-bottom: 20px;
+    margin: auto 50px 20px auto;
+    font-size: larger;
+    color: white;
+    gap: 20px;
 }
 
-link {
-    /* text-decoration: none; */
+.header-lines link {
     color: white;
     font-weight: lighter;
     letter-spacing: 1.5px;
@@ -88,16 +79,4 @@ link {
         gap: 15px;
         font-size: 100%;
     }
-}
-
-@font-face {
-    font-family: "QwitcherGrypen";
-    src: local("QwitcherGrypen"),
-    url("../../assets/fonts/QwitcherGrypen/QwitcherGrypen-Regular.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "QwitcherGrypen-Bold";
-    src: local("QwitcherGrypen"),
-    url("../../assets/fonts/QwitcherGrypen/QwitcherGrypen-Bold.ttf") format("truetype");
 }

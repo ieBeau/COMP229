@@ -1,11 +1,18 @@
 import '../styles/scenes/Services.css';
 
-import Service from "../components/Service";
+import Service from "../components/cards/Service.jsx";
+
+import logoWebDev from '../assets/images/services/service-web-dev.png';
+import logoMobileDev from '../assets/images/services/service-mobile-dev.png';
+import logoBackendDev from '../assets/images/services/service-backend-dev.png';
+import logoFullstackDev from '../assets/images/services/service-fullstack-dev.png';
+import logoDatabase from '../assets/images/services/service-database.png';
+import logoCloudComputing from '../assets/images/services/service-cloud-computing.png';
 
 export default function Services () {
     return (
         <div className="services">
-            <h1>My Services</h1>
+            <div className="page-title">MY SERVICES</div>
 
             <div className="list">
                 <Service
@@ -15,7 +22,7 @@ export default function Services () {
                         "Ensuring cross-browser compatibility and optimizing performance for fast load times",
                         "Implementing SEO best practices to improve search engine rankings and visibility"
                     ]}
-                    image="/logo-webdev.svg"
+                    image={logoWebDev}
                     size={100}
                 />
                 <Service
@@ -25,7 +32,7 @@ export default function Services () {
                         "Utilizing native and cross-platform frameworks to deliver high-quality user experiences",
                         "Integrating APIs and third-party services to enhance app functionality and user engagement"
                     ]}
-                    image="/logo-mobiledev.svg"
+                    image={logoMobileDev}
                     size={100}
                 />
                 <Service
@@ -35,7 +42,17 @@ export default function Services () {
                         "Managing databases and ensuring data integrity and security",
                         "Optimizing server performance and scalability to handle high traffic loads"
                     ]}
-                    image="/logo-backenddev.svg"
+                    image={logoBackendDev}
+                    size={100}
+                />
+                <Service
+                    name="Full-Stack Development"
+                    descriptions={[
+                        "Combining front-end and back-end development skills to build complete web applications",
+                        "Ensuring seamless integration between client-side and server-side components",
+                        "Utilizing a variety of technologies and frameworks to deliver end-to-end solutions"
+                    ]}
+                    image={logoFullstackDev}
                     size={100}
                 />
                 <Service
@@ -45,17 +62,7 @@ export default function Services () {
                         "Implementing data modeling techniques to support application requirements",
                         "Ensuring data security and compliance with industry standards"
                     ]}
-                    image="/logo-databasedesign.svg"
-                    size={100}
-                />
-                <Service
-                    name="API Integration"
-                    descriptions={[
-                        "Connecting third-party services and APIs to enhance application functionality",
-                        "Implementing RESTful and GraphQL APIs for seamless data exchange",
-                        "Ensuring API security and performance optimization"
-                    ]}
-                    image="/logo-apiintegration.svg"
+                    image={logoDatabase}
                     size={100}
                 />
                 <Service
@@ -65,7 +72,7 @@ export default function Services () {
                         "Implementing cloud infrastructure and services to support application scalability",
                         "Optimizing cloud resource usage to reduce costs and improve performance"
                     ]}
-                    image="/logo-cloudcomputing.svg"
+                    image={logoCloudComputing}
                     size={100}
                 />
             </div>
