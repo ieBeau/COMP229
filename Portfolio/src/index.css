@@ -1,7 +1,5 @@
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  /* font-family: Helvetica, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,23 +14,17 @@
 }
 
 a {
-  /* font-weight: 500; */
-  /* font-weight: lighter; */
-  /* color: #646cff; */
-  /* font-size: smaller; */
   letter-spacing: 1.25px;
   color: white;
   text-decoration: inherit;
 }
 a:hover {
-  /* color: #535bf2; */
   color: rgb(199, 199, 199);
 }
 
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
@@ -55,7 +47,6 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  /* border-color: #646cff; */
     box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
     color: rgb(255, 212, 121);
 }

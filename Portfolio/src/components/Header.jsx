@@ -1,13 +1,26 @@
+/**
+ * Header component renders the main header section of the application, including navigation links and branding.
+ * 
+ * The header includes a background, a main logo, and navigation links to different pages such as Home, About, Projects, Education, Services, and Contact.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered header layout with navigation and branding.
+ * 
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/" element={<Layout />} />
+ */
+
 import '../styles/components/Header.css'
 
 import { Link } from 'react-router-dom'
 import HeaderBackground from './backgrounds/HeaderBackground';
 import MainLogo from './MainLogo';
 
-export default function Layout() {
+export default function Header() {
 
     return (
-        <div className='layout'>
+        <div className='header'>
             
             <div className="header-lines">
 

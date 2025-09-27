@@ -1,8 +1,6 @@
 #root {
-  /* max-width: 1280px; */
   width: 100%;
   height: 100%;
-  /* margin: 0 auto; */
   text-align: center;
 }
 
@@ -13,16 +11,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  /* filter: drop-shadow(0 0 2em #646cffaa); */
   filter: drop-shadow(0 0 0.35em white);
-  /* animation-duration: 1.5s;
-  animation-timing-function: ease-in-out; */
 }
 .logo.react:hover {
-  /* filter: drop-shadow(0 0 2em #61dafbaa); */
   filter: drop-shadow(0 0 0.35em white);
-  /* animation-duration: 1.5s;
-  animation-timing-function: ease-in-out; */
 }
 
 @keyframes logo-spin {

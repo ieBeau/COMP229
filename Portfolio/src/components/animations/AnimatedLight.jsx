@@ -1,4 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+/**
+ * AnimatedLight component renders a glowing light effect that follows the user's mouse cursor.
+ * 
+ * The light is implemented as an absolutely positioned div styled with a radial gradient and shadow,
+ * and its position updates in response to mouse movements across the window. The light is non-interactive
+ * and appears behind other content due to its negative z-index.
+ * 
+ * @component
+ * @returns {JSX.Element} The animated light effect that follows the mouse cursor.
+ * 
+ * @example
+ * // Usage in a React application
+ * <AnimatedLight />
+ */
+
+import { useRef, useEffect } from 'react';
 
 const lightSize = 250;
 

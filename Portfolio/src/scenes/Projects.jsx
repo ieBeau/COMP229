@@ -1,3 +1,18 @@
+/**
+ * Projects component renders a list of personal projects with their details.
+ *
+ * Each project displays its name, a list of descriptions, and an associated image.
+ * The component is intended to showcase personal or portfolio projects, highlighting
+ * key features and technologies used in each.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered projects page with a title and a list of Project components.
+ *
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/projects" element={<Projects />} />
+ */
+
 import '../styles/scenes/Projects.css';
 
 import Project from "../components/cards/Project.jsx";

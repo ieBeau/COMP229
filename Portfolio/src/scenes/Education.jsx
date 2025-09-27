@@ -1,3 +1,16 @@
+/**
+ * Education component renders the education page with a list of educational institutions attended.
+ * 
+ * Displays each school as a card with details such as name, degree, program, GPA, attendance dates, graduation status, location, logo, and a link to the program.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered education page with a list of School cards.
+ * 
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/education" element={<Education />} />
+ */
+
 import '../styles/scenes/Education.css';
 
 import School from '../components/cards/School.jsx';

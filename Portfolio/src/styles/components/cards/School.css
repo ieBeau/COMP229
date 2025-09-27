@@ -4,14 +4,13 @@
     align-items: center;
     justify-content: flex-start;
     background-color: #242424;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
 .school:hover {
-    /* background-color: rgb(42, 42, 42); */
     box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
     color: rgb(255, 212, 121);
 }
@@ -24,6 +23,14 @@
     margin: 0;
 }
 
+.school-name {
+    font-size: 1.3em;
+    margin: 10px 0 15px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+}
+
 .school img {
     border-radius: 10px;
     height: 100px;
@@ -33,9 +40,9 @@
 
 .school .details {
     height: 100px;
-    /* width: 450px; */
     width: 100%;
     margin-left: 30px;
+    font-size: 1em;
     text-align: left;
     justify-content: space-between;
 }

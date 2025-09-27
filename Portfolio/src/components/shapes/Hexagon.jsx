@@ -1,3 +1,21 @@
+/**
+ * Hexagon component renders a regular hexagon SVG shape with customizable size, fill color, and edge color.
+ * 
+ * The hexagon is centered within the SVG and its points are calculated mathematically to ensure regularity.
+ * The component allows for easy customization of the hexagon's appearance via props.
+ * 
+ * @component
+ * @param {Object} props - Component props.
+ * @param {number} [props.size=50] - The diameter of the hexagon (width and height of the SVG).
+ * @param {string} [props.color='#2b2b2bff'] - The fill color of the hexagon.
+ * @param {string} [props.edgeColor=''] - The stroke (edge) color of the hexagon.
+ * @returns {JSX.Element} The rendered SVG hexagon.
+ * 
+ * @example
+ * // Render a blue hexagon with a red edge
+ * <Hexagon size={100} color="blue" edgeColor="red" />
+ */
+
 const Hexagon = ({ size = 50, color = '#2b2b2bff', edgeColor = '' }) => {
     let width = size;
     let height = Math.sqrt(3) / 2 * size;

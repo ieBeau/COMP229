@@ -4,28 +4,32 @@
     align-items: center;
 }
 
-.summary {
-    max-width: 1000px;
+.summary-container {
+    max-width: 1100px;
     text-align: left;
     background-color: rgb(30, 30, 30);
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: 1em;
 }
 
 .photo {
-    width: 160px;
+    width: 255px;
     height: auto;
-    margin: 0 15px 0 0;
+    margin: 0 25px 0 0;
     border-radius: 8px;
     flex-shrink: 0;
     float: left;
 }
 
-.pdf {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+.summary p {
+    margin: 0;
 }

@@ -9,9 +9,9 @@
 .education .list {
     display: grid;
     grid-template-columns: 1fr;
-    width: 825px;
+    width: 850px;
     background-color: rgb(30, 30, 30);
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
-    gap: 30px;
+    gap: 40px;
 }

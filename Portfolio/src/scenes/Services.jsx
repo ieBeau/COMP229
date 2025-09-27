@@ -1,3 +1,18 @@
+/**
+ * Services component renders a list of professional services offered.
+ * 
+ * Each service is displayed using the Service card component, showing the service name, a list of descriptions, and an associated image.
+ * 
+ * The services include Web Development, Mobile App Development, Backend Development, Full-Stack Development, Database Design, and Cloud Computing.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered services page with a list of service cards.
+ * 
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/services" element={<Services />} />
+ */
+
 import '../styles/scenes/Services.css';
 
 import Service from "../components/cards/Service.jsx";

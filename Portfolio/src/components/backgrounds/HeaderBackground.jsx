@@ -1,3 +1,20 @@
+/**
+ * BackgroundHeader component renders a grid of hexagon shapes as a decorative header background,
+ * along with an animated light effect.
+ *
+ * The hexagons are arranged in a staggered hexagonal grid pattern, calculated based on row and column indices.
+ * Each hexagon is rendered using the Hexagon component, and the AnimatedLight component overlays the grid for visual effect.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered header background with a hexagonal grid and animated light.
+ *
+ * @example
+ * // Usage in a page header
+ * <header>
+ *   <BackgroundHeader />
+ * </header>
+ */
+
 import '../../styles/components/backgrounds/BackgroundHeader.css';
 
 import Hexagon from '../shapes/Hexagon';
