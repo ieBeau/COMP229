@@ -14,7 +14,7 @@
 
 import '../styles/components/PDF.css';
 
-import resume from '../assets/documents/resume.pdf';
+import resume from '../assets/documents/Pierre Moreau - Resume.pdf';
 
 import { useState } from 'react';
 
