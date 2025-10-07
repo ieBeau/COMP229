@@ -1,0 +1,23 @@
+.main-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 0;
+}
+
+.logo {
+    width: 375px;
+    height: auto;
+    cursor: pointer;
+}
+
+.background {
+    position: absolute;
+    background-color: #242424;
+    width: 325px;
+    height: 205px;
+    top: 55px;
+    z-index: -1;
+}
