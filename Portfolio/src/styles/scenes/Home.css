@@ -10,7 +10,7 @@
     text-align: left;
     background-color: rgb(30, 30, 30);
     padding: 40px;
-    margin-top: 20px;
+    margin: 20px 40px 0 40px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }

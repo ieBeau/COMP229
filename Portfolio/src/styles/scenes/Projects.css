@@ -14,5 +14,10 @@
     border-radius: 10px;
     gap: 40px;
     justify-content: center;
-    padding-bottom: 20px;
+}
+
+@media (max-width: 1750px) {
+    .projects .list {
+        width: 80%;
+    }
 }
