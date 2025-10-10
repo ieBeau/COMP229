@@ -16,7 +16,7 @@
  * <Hexagon size={100} color="blue" edgeColor="red" />
  */
 
-const Hexagon = ({ size = 50, color = '#2b2b2bff', edgeColor = '' }) => {
+const Hexagon = ({ size = 50 }) => {
     let width = size;
     let height = Math.sqrt(3) / 2 * size;
 
@@ -41,11 +41,10 @@ const Hexagon = ({ size = 50, color = '#2b2b2bff', edgeColor = '' }) => {
     height = size;
 
     return (
-        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+        <svg  width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
             <polygon 
+                className="hexagon"
                 points={points} 
-                fill={color} 
-                stroke={edgeColor} 
                 strokeWidth="1"
             />
         </svg>

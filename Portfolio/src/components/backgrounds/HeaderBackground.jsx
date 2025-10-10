@@ -42,7 +42,7 @@ const BackgroundHeader = () => (
                     const { left, top } = getHexagonPosition(row, col);
                     return (
                         <div key={`${row}-${col}`} style={{ position: 'absolute', left, top }}>
-                            <Hexagon size={HEXAGON_SIZE} color='#262626' edgeColor='#1f1f1fff' />
+                            <Hexagon size={HEXAGON_SIZE} />
                         </div>
                     );
                 })

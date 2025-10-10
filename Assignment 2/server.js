@@ -2,7 +2,7 @@ import config from "./config/config.js";
 import app from "./server/express.js";
 import mongoose from "mongoose";
 
-import dotenv from 'dotenv/config';
+import 'dotenv/config';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoUri, {

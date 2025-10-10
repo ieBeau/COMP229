@@ -37,6 +37,7 @@ const AnimatedLight = () => {
     return (
         <>
             <div
+                className='animated-light'
                 ref={lightRef}
                 style={{
                     position: 'absolute',
@@ -44,8 +45,6 @@ const AnimatedLight = () => {
                     width: `${lightSize}px`,
                     height: `${lightSize}px`,
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 233,0.2) 60%, transparent 100%)',
-                    boxShadow: '0 0 40px 20px rgba(255, 255, 233, 0.3)',
                     transition: 'left 0.05s, top 0.05s',
                     opacity: 0.3,
                     zIndex: -1

@@ -10,7 +10,7 @@
     text-align: left;
     background-color: rgb(30, 30, 30);
     padding: 40px;
-    margin-top: 20px;
+    margin: 20px 40px 0 40px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -37,3 +37,10 @@
 .highlight {
     color: rgb(255, 212, 121);
 }
+
+/* @media (prefers-color-scheme: light) {
+  .mission-statement {
+    background-color: #f0f0f0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+} */
