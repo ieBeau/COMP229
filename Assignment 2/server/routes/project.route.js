@@ -3,11 +3,11 @@ import projectController from '../controllers/project.controller.js';
 
 const router = express.Router();
 
-router.get('/', projectController.getAllProjects); 
-router.get('/:id', projectController.getProject);
-router.post('/', projectController.createProject);
-router.put('/:id', projectController.updateProject);
-router.delete('/:id', projectController.deleteProject);
-router.delete('/', projectController.deleteAllProject);
+router.get('/api/projects/', projectController.getAllProjects); 
+router.get('/api/projects/:id', projectController.getProject);
+router.post('/api/projects/', projectController.createProject);
+router.put('/api/projects/:id', projectController.updateProject);
+router.delete('/api/projects/:id', projectController.deleteProject);
+router.delete('/api/projects/', projectController.deleteAllProject);
 
 export default router;

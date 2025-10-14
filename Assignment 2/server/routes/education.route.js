@@ -3,11 +3,11 @@ import educationController from '../controllers/education.controller.js';
 
 const router = express.Router();
 
-router.get('/', educationController.getAllEducation);
-router.get('/:id', educationController.getEducation);
-router.post('/', educationController.createEducation);
-router.put('/:id', educationController.updateEducation);
-router.delete('/:id', educationController.deleteEducation);
-router.delete('/', educationController.deleteAllEducation);
+router.get('/api/education/', educationController.getAllEducation);
+router.get('/api/education/:id', educationController.getEducation);
+router.post('/api/education/', educationController.createEducation);
+router.put('/api/education/:id', educationController.updateEducation);
+router.delete('/api/education/:id', educationController.deleteEducation);
+router.delete('/api/education/', educationController.deleteAllEducation);
 
 export default router;

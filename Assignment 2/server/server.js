@@ -1,5 +1,5 @@
 import config from "./config/config.js";
-import app from "./server/express.js";
+import app from "./express.js";
 import mongoose from "mongoose";
 
 import 'dotenv/config';
@@ -26,16 +26,4 @@ app.listen(config.port, (err) => {
   console.log(`Server running at http://localhost:${config.port}/`);
 });
 
-// //import express from "express";
-// //var express = require("express");
-// //var app = express();
-// import router from "./server/assets-router.js";
-// //const assetsRouter = require("./server/assets-router");
-// app.use("/src", router);
-// app.use("/", function (req, res) {
-//   res.send({message: "Welcome to My Portfolio application."});
-// });
-// app.listen(3000);
-// console.log("Server running at http://localhost:3000/");
-// //module.exports = app;
 export default app;
