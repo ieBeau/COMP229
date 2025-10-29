@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.listen(config.port, (err) => {
   if (err) console.error(`Error starting server: ${err}`); 
-  console.log(`Server running at http://localhost:${config.port}/`);
+  console.log(`Server running on http://localhost:${config.port}/`);
 });
 
 export default app;

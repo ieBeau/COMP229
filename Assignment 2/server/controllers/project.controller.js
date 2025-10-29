@@ -12,9 +12,9 @@ const getAllProjects = async (req, res) => {
 const getProject = async (req, res) => {
     try {
         const project = await ProjectModel.findById(req.params.id);
-        if (!project) {
-            return res.status(404).json({ message: 'Project not found' });
-        }
+        
+        if (!project) return res.status(404).json({ message: 'Project not found' });
+        
         res.status(200).json(project);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -34,9 +34,9 @@ const createProject = async (req, res) => {
 const updateProject = async (req, res) => {
     try {
         const updatedProject = await ProjectModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedProject) {
-            return res.status(404).json({ message: 'Project not found' });
-        }
+        
+        if (!updatedProject) return res.status(404).json({ message: 'Project not found' });
+        
         res.status(200).json(updatedProject);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -46,16 +46,16 @@ const updateProject = async (req, res) => {
 const deleteProject = async (req, res) => {
     try {
         const deletedProject = await ProjectModel.findByIdAndDelete(req.params.id);
-        if (!deletedProject) {
-            return res.status(404).json({ message: 'Project not found' });
-        }
+        
+        if (!deletedProject) return res.status(404).json({ message: 'Project not found' });
+        
         res.status(200).json({ message: 'Project deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-const deleteAllProject = async (req, res) => {
+const deleteAllProjects = async (req, res) => {
     try {
         await ProjectModel.deleteMany({});
         res.status(200).json({ message: 'All projects deleted successfully' });
@@ -64,4 +64,4 @@ const deleteAllProject = async (req, res) => {
     }
 };
 
-export default { getAllProjects, getProject, createProject, updateProject, deleteProject, deleteAllProject };
+export default { getAllProjects, getProject, createProject, updateProject, deleteProject, deleteAllProjects };
