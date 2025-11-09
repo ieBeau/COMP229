@@ -23,7 +23,7 @@
     margin: 0;
 }
 
-.school-name {
+.school .school-name {
     font-size: 1.3em;
     margin: 10px 0 15px;
     font-weight: bold;
@@ -53,4 +53,16 @@
     font-style: italic;
     color: gray;
     justify-content: space-between;
+}
+
+.school .school-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.school-admin-buttons {
+    display: flex;
+    gap: 10px;
 }

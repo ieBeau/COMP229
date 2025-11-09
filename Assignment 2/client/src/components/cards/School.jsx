@@ -23,21 +23,63 @@
 
 import '../../styles/components/cards/School.css';
 
-export default function School({ name, degree, program, studentGPA = "", schoolGPA = "", started, graduation, graduated, location, image = "/logo.svg", url = "" }) {
+import { useUser } from '../../context/UserContext';
+
+import ButtonDelete from '../buttons/ButtonDelete';
+import ButtonEdit from '../buttons/ButtonEdit';
+
+export default function School({ id, school, degree, program, studentGPA, schoolGPA, start, end, location, image, url = "", onClickEdit, onClickDelete }) {
+
+    const { isAdmin } = useUser();
+
+    const graduated = new Date() >= new Date(end);
+    
+    // Default image if none provided
+    if (!image) image = "/logo.svg";
+    
+    const formatMonthYear = (dateStr) => {
+        if (!dateStr) return "";
+
+        const date = new Date(dateStr);
+
+        if (isNaN(date)) return dateStr;
+
+        return date.toLocaleString(undefined, { month: "long", year: "numeric" });
+    };
+
+    const formattedStart = formatMonthYear(start);
+    const formattedEnd = formatMonthYear(end);
+
+    let studentGPAValue
+    let studentGPAAvg; 
+
+    if (studentGPA) {
+        studentGPAValue = studentGPA.split(' ')[0];
+        studentGPAAvg = studentGPA.split(' ').filter(val => val.includes('%'))[0]; 
+        studentGPAAvg = studentGPAAvg ? studentGPAAvg.replace(/[^0-9.%]+/g, "") : "";
+    }
 
     return (
-        <div className="school" onClick={() => window.open(url, "_blank")}>
-            <img src={image} alt={name} width={100} height={100} />
-
+        <div className="school" onClick={() => url && window.open(url, "_blank")}>
+            <img src={image} alt={school} width={100} height={100} />
             <div className='details'>
-                <div className='school-name'>{name}</div>
+                <div className='school-header'>
+                    <div className='school-name'>{school}</div>
+
+                    { isAdmin ? 
+                        <div className='school-admin-buttons'>
+                            <ButtonEdit id={id} type="education" onClick={() => onClickEdit()} />
+                            <ButtonDelete id={id} type="education" onClick={() => onClickDelete()} />
+                        </div>
+                    : null }
+                </div>
 
                 <div className='info'>
                     <p className='degree'>{degree} in {program}</p>
 
                     <div className='additional-info'>
-                        <p className='location'>{location}{studentGPA ? ` | GPA: ${schoolGPA} / ${studentGPA}` : ""}</p>
-                        <p className='graduation'>{graduated ? `${started} - ` : "Expected:"} {graduation}</p>
+                        <p className='location'>{location}{studentGPA ? ` | GPA: ${studentGPAValue} / ${schoolGPA} ${studentGPAAvg ? `(${studentGPAAvg})` : ""}` : ""}</p>
+                        <p className='graduation'>{graduated ? `${formattedStart} - ${formattedEnd}` : `Expected: ${formattedEnd}`}</p>
                     </div>
                 </div>
 

@@ -150,7 +150,7 @@ export default function ProjectEdit ({ project, handleAction, onClose }) {
                             />
                         </div>
 
-                        <button type="submit" disabled={JSON.stringify(form) === JSON.stringify(project)}>Edit Project</button>
+                        <button type="submit">Edit Project</button>
                     </form>
                 </div>
             </div>

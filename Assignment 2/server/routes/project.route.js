@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+
 import projectController from '../controllers/project.controller.js';
 import authMiddleware from '../middlewares/auth.middleware.js';
 

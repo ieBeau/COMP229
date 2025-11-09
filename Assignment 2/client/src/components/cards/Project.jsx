@@ -21,7 +21,7 @@ import { useUser } from '../../context/UserContext';
 import ButtonDelete from '../buttons/ButtonDelete';
 import ButtonEdit from '../buttons/ButtonEdit';
 
-export default function Project({ id, title, descriptions, image, onClickEdit, onClickDelete, url = "", size = 125 }) {
+export default function Project({ id, title, descriptions, image, url = "", onClickEdit, onClickDelete, size = 125 }) {
 
     const { isAdmin } = useUser();
 

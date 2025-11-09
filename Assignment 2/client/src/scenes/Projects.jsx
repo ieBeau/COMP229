@@ -22,12 +22,13 @@ import Project from "../components/cards/Project.jsx";
 // import logoStockTrading from '../assets/images/projects/project-trading-logo.png';
 import { useUser } from '../context/UserContext.jsx';
 import { useEffect, useState } from 'react';
+
 import ProjectEdit from '../components/cards/ProjectEdit.jsx';
 import ProjectCreate from '../components/cards/ProjectCreate.jsx';
 
 export default function Projects () {
 
-    const { user, isAdmin } = useUser();
+    const { isAdmin } = useUser();
 
     const [projects, setProjects] = useState([]);
 
@@ -78,24 +79,13 @@ export default function Projects () {
     return (
         <div className="projects">
 
+            { showCreateProjectForm && <ProjectCreate handleAction={handleCreate} onClose={toggleCreateProjectForm} />}
 
-            {
-                showCreateProjectForm && (
-                    <ProjectCreate handleAction={handleCreate} onClose={toggleCreateProjectForm} />
-                )
-            }
-
-            {
-                showEditProjectForm && (
-                    <ProjectEdit project={currentProject} handleAction={handleEdit} onClose={toggleEditProjectForm} />
-                )
-            }
+            { showEditProjectForm && <ProjectEdit project={currentProject} handleAction={handleEdit} onClose={toggleEditProjectForm} /> }
 
             <div className="page-title">PERSONAL PROJECTS</div>
             
-            {
-                isAdmin && <button className="admin-banner" onClick={toggleCreateProjectForm}>Add Project</button>
-            }
+            { isAdmin && <button className="admin-banner" onClick={toggleCreateProjectForm}>Add Project</button> }
 
             <div className="list">
                 {
@@ -107,9 +97,9 @@ export default function Projects () {
                                 id={project._id}
                                 title={project.title}
                                 descriptions={project.descriptions}
+                                image={project.image}
                                 onClickEdit={() => { toggleEditProjectForm(), setCurrentProject(project) }}
                                 onClickDelete={() => handleDelete(project._id)}
-                                image={project.image}
                             />
                             : <></>
                         ))
@@ -117,6 +107,7 @@ export default function Projects () {
                         <p>No projects found.</p>
                     )
                 }
+
                 {/* <Project
                     id={1}
                     title="Fitness Trainer"

@@ -1,4 +1,4 @@
-.edit-project-backdrop {
+.edit-school-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     z-index: 10;
 }
 
-.edit-project-container {
+.edit-school-container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -18,11 +18,11 @@
     transform: translate(-50%, -50%);
 }
 
-.edit-project-container .close-button {
+.edit-school-container .close-button {
     align-self: center;
 }
 
-.edit-project-container .form-container {
+.edit-school-container .form-container {
     background-color: rgb(11, 11, 11);
     border: 1px solid rgb(255, 212, 121);
     padding: 25px;
@@ -32,19 +32,38 @@
     min-width: 300px;
 }
 
-.edit-project-container .project-form {
+.edit-school-container .school-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.edit-project-container .project-form label { 
+.edit-school-container .two-col-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: left;
+    max-width: 100%;
+}
+
+.edit-school-container .two-col-container > * {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.edit-school-container .two-col-container .col-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-school-container .school-form label { 
     font-weight: bold; 
     text-align: left;
 }
 
-.edit-project-container .project-form input, 
-.edit-project-container .project-form textarea {
+.edit-school-container .school-form input, 
+.edit-school-container .school-form textarea {
     padding: 8px; 
     border: 1px solid #ccc; 
     color: white;
@@ -56,25 +75,25 @@
     box-sizing: border-box;
 }
 
-.edit-project-container .project-form input:hover, 
-.edit-project-container .project-form textarea:hover {
+.edit-school-container .school-form input:hover, 
+.edit-school-container .school-form textarea:hover {
     box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
     color: rgb(255, 212, 121);
 }
 
-.edit-project-container .project-title:has(+ input:hover),
-.edit-project-container .project-descriptions:has(~ textarea:hover) {
+.edit-school-container .school-title:has(+ input:hover),
+.edit-school-container .school-descriptions:has(~ textarea:hover) {
     color: rgb(255, 212, 121);
 }
 
-.edit-project-container .project-image-container {
+.edit-school-container .school-image-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin: 10px 0;
 }
 
-.edit-project-container .project-image-button {
+.edit-school-container .school-image-button {
     display: flex;
     padding: 8px 12px;
     background: #007acc;
@@ -86,25 +105,25 @@
     text-align: center;
 }
 
-.edit-project-container .project-image-button:hover {
+.edit-school-container .school-image-button:hover {
     background: #005fa3;
     border: none;
     box-shadow: inset 0 0 0 1px #007ed7;
 }
 
-.edit-project-container .new-project-image-container {
+.edit-school-container .new-school-image-container {
     display: flex;
     align-self: center;
     border-radius: 8px;
     overflow: hidden
 }
 
-.edit-project-container #project-image-input {
+.edit-school-container #school-image-input {
     display: none;
 }
 
 
-.edit-project-container #new-project-image-preview {
+.edit-school-container #new-school-image-preview {
     display: block;
     max-width: 200px;
     max-height: 120px;
@@ -112,7 +131,7 @@
     border-radius: 8px;
 }
 
-.edit-project-container #new-project-image-name {
+.edit-school-container #new-school-image-name {
     text-align: center;
     font-size: 1em;
     color: #ccc;
