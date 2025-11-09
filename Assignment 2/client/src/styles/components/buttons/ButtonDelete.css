@@ -1,0 +1,22 @@
+.button-delete {
+    display: inherit;
+    background-color: #891919;
+    border: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.button-delete:hover,
+.button-delete:focus,
+.button-delete:active {
+    color: white !important;
+    box-shadow: 0 0 0 1px rgb(255, 36, 36) inset !important;
+    outline: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}

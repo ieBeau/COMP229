@@ -1,0 +1,122 @@
+.create-project-backdrop {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.create-project-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.create-project-container .close-button {
+    align-self: center;
+}
+
+.create-project-container .form-container {
+    background-color: rgb(11, 11, 11);
+    border: 1px solid rgb(255, 212, 121);
+    padding: 25px;
+    z-index: 20;
+    border-radius: 15px;
+    width: 30vw;
+    min-width: 300px;
+}
+
+.create-project-container .project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-project-container .project-form label { 
+    font-weight: bold; 
+    text-align: left;
+}
+
+.create-project-container .project-form input, 
+.create-project-container .project-form textarea {
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    color: white;
+    background-color: rgb(30, 30, 30);
+    border-radius: 4px; 
+    font-size: 16px; 
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.create-project-container .project-form input:hover, 
+.create-project-container .project-form textarea:hover {
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
+}
+
+.create-project-container .project-form .project-title:has(+ input:hover),
+.create-project-container .project-form .project-descriptions:has(~ textarea:hover) {
+    color: rgb(255, 212, 121);
+}
+
+.create-project-container .project-image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.create-project-container .project-image-button {
+    display: flex;
+    padding: 8px 12px;
+    background: #007acc;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.create-project-container .project-image-button:hover {
+    background: #005fa3;
+    border: none;
+    box-shadow: inset 0 0 0 1px #007ed7;
+}
+
+.create-project-container .new-project-image-container {
+    display: flex;
+    align-self: center;
+    border-radius: 8px;
+    overflow: hidden
+}
+
+.create-project-container #project-image-input {
+    display: none;
+}
+
+
+.create-project-container #new-project-image-preview {
+    display: block;
+    max-width: 200px;
+    max-height: 120px;
+    align-self: center;
+    border-radius: 8px;
+}
+
+.create-project-container #new-project-image-name {
+    text-align: center;
+    font-size: 1em;
+    color: #ccc;
+    overflow-wrap: break-word;
+}

@@ -15,7 +15,7 @@
 import '../styles/scenes/About.css';
 
 import headshot from '../assets/images/headshot.png'
-import PDF from '../components/PDF.jsx';
+import PDF from '../components/misc/PDF.jsx';
 
 export default function About () {
 

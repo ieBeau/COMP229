@@ -7,6 +7,7 @@ const requireSignin = (req, res, next) => {
 
     if (!token) return res.status(401).json({ error: "Unauthorized" });
 
+
     try {
         jwt.verify(token, config.jwtSecret, (err, decoded) => {
             if (err) return res.status(401).json({ error: "Unauthorized" });

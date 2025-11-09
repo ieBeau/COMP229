@@ -1,0 +1,22 @@
+.button-edit {
+    display: inherit;
+    background-color: rgb(9, 89, 163);
+    border: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.button-edit:hover,
+.button-edit:focus,
+.button-edit:active {
+    color: white !important;
+    box-shadow: 0 0 0 1px rgb(17, 129, 234) inset !important;
+    outline: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}

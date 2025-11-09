@@ -23,7 +23,7 @@
 }
 
 .header.active {
-    background-color: #333;
+    background-color: rgb(255, 213, 121);
     color: white;
 }  
 
@@ -50,6 +50,20 @@
     overflow: hidden; 
 }
 
+.header-lines .login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header-lines .login nav {
+    display: flex;
+    align-self: flex-start;
+    margin: auto auto 20px 50px;
+    font-size: larger;
+    color: white;
+    gap: 20px;
+}
 
 .header-lines .navigation {
     display: flex;
@@ -57,7 +71,7 @@
     width: 100%;
 }
 
-.header-lines nav {
+.header-lines .navigation nav {
     display: flex;
     align-self: flex-end;
     margin: auto 50px 20px auto;

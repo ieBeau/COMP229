@@ -17,18 +17,109 @@ import '../styles/scenes/Projects.css';
 
 import Project from "../components/cards/Project.jsx";
 
-import logoCalculator from '../assets/images/projects/project-calculator-logo.png';
-import logoFitnessTrainer from '../assets/images/projects/project-fitness-logo.png';
-import logoStockTrading from '../assets/images/projects/project-trading-logo.png';
+// import logoCalculator from '../assets/images/projects/project-calculator-logo.png';
+// import logoFitnessTrainer from '../assets/images/projects/project-fitness-logo.png';
+// import logoStockTrading from '../assets/images/projects/project-trading-logo.png';
+import { useUser } from '../context/UserContext.jsx';
+import { useEffect, useState } from 'react';
+import ProjectEdit from '../components/cards/ProjectEdit.jsx';
+import ProjectCreate from '../components/cards/ProjectCreate.jsx';
 
 export default function Projects () {
+
+    const { user, isAdmin } = useUser();
+
+    const [projects, setProjects] = useState([]);
+
+    const getProjects = async () => {
+        await fetch('http://localhost:3000/api/projects', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => setProjects(data))
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    useEffect(() => {
+        getProjects();
+    }, []);
+
+    const handleCreate = (newProject) => {
+        setProjects([...projects, newProject]);
+    }
+
+    const handleEdit = (newProject) => {
+        setProjects(projects.map(project => 
+            project._id === newProject._id ? { ...project, ...newProject } : project
+        ));
+    }
+
+    const handleDelete = (id) => {
+        setProjects(projects.filter(project => project._id !== id));
+    }
+
+    const [currentProject, setCurrentProject] = useState(null);
+    const [showEditProjectForm, setShowEditProjectForm] = useState(false);
+    const toggleEditProjectForm = () => {
+        setShowEditProjectForm(!showEditProjectForm);
+    }
+
+    const [showCreateProjectForm, setShowCreateProjectForm] = useState(false);
+    const toggleCreateProjectForm = () => {
+        setShowCreateProjectForm(!showCreateProjectForm);
+    }
+
     return (
         <div className="projects">
+
+
+            {
+                showCreateProjectForm && (
+                    <ProjectCreate handleAction={handleCreate} onClose={toggleCreateProjectForm} />
+                )
+            }
+
+            {
+                showEditProjectForm && (
+                    <ProjectEdit project={currentProject} handleAction={handleEdit} onClose={toggleEditProjectForm} />
+                )
+            }
+
             <div className="page-title">PERSONAL PROJECTS</div>
+            
+            {
+                isAdmin && <button className="admin-banner" onClick={toggleCreateProjectForm}>Add Project</button>
+            }
 
             <div className="list">
-                <Project
-                    name="Fitness Trainer"
+                {
+                    projects.length > 0 ? (
+                        projects.map((project) => (
+                            project ?
+                            <Project
+                                key={project._id}
+                                id={project._id}
+                                title={project.title}
+                                descriptions={project.descriptions}
+                                onClickEdit={() => { toggleEditProjectForm(), setCurrentProject(project) }}
+                                onClickDelete={() => handleDelete(project._id)}
+                                image={project.image}
+                            />
+                            : <></>
+                        ))
+                    ) : (
+                        <p>No projects found.</p>
+                    )
+                }
+                {/* <Project
+                    id={1}
+                    title="Fitness Trainer"
                     descriptions={[
                         "Developed an AI-driven system to generate personalized workout plans for users",
                         "Designed and implemented features to track and analyze historical workout data",
@@ -37,7 +128,8 @@ export default function Projects () {
                     image={logoFitnessTrainer}
                 />
                 <Project
-                    name="Calculator Hub"
+                    id={2}
+                    title="Calculator Hub"
                     descriptions={[
                         "Maintained a comprehensive database of international currency rates",
                         "Automated currency rate updates by scheduling API calls via Google Cloud Platform",
@@ -47,14 +139,15 @@ export default function Projects () {
                     size={100}
                 />
                 <Project
-                    name="Automated Stock Trading"
+                    id={3}
+                    title="Automated Stock Trading"
                     descriptions={[
                         "Designed trading algorithms incorporating risk and reward analysis to optimize performance",
                         "Automated execution of personalized trading strategies for consistent operation",
                         "Containerized the program using Docker to enable scheduled deployment and automation"
                     ]}
                     image={logoStockTrading}
-                />
+                /> */}
             </div>
         </div>
     )

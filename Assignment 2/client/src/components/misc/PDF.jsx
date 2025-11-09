@@ -12,9 +12,9 @@
  * <PDF />
  */
 
-import '../styles/components/PDF.css';
+import '../../styles/components/misc/PDF.css';
 
-import resume from '../assets/documents/Pierre Moreau - Resume.pdf';
+import resume from '../../assets/documents/Pierre Moreau - Resume.pdf';
 
 import { useState } from 'react';
 
@@ -27,15 +27,8 @@ export default function PDF () {
             <button className='pdf-button' onClick={() => setShowPDF(!showPDF)}>Resume</button>
             {showPDF && (
                 <div className='pdf-container' onClick={() => setShowPDF(false)}>
+                    <button onClick={e => {e.stopPropagation(); setShowPDF(false); }}>✖</button>
                     <iframe className='pdf' src={resume} width={'35%'} height={'90%'} />
-                    
-                    <button onClick={e => {
-                            e.stopPropagation();
-                            setShowPDF(false);
-                        }}
-                    >
-                        Close
-                    </button>
                 </div>
             )}
         </>

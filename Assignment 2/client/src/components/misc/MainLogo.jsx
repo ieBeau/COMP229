@@ -13,9 +13,9 @@
  * <MainLogo />
  */
 
-import '../styles/components/MainLogo.css'
+import '../../styles/components/misc/MainLogo.css'
 
-import logo from '../assets/images/logos/PM_Portfolio_Logo_SerifWhite.png';
+import logo from '../../assets/images/logos/PM_Portfolio_Logo_SerifWhite.png';
 
 import { useNavigate } from 'react-router-dom'
 

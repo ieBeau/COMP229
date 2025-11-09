@@ -10,7 +10,13 @@ const signin = async (req, res) => {
         if (!user.authenticate(req.body.password)) return res.status(401).send({ error: "Email and password don't match." });
         
         const token = generateToken(user);
-        res.cookie('t', token, { expire: new Date() + 9999 });
+
+        // same-origin usage; set cookie options suitable for localhost and production
+        const cookieOptions = {
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        };
+
+        res.cookie('t', token, cookieOptions);
 
         res.status(200).json({
             message: "Signed in successfully",
