@@ -1,0 +1,64 @@
+.message {
+    background-color: #242424;
+    padding: 25px;
+    border-radius: 15px;
+    /* cursor: pointer; */
+}
+
+.message:hover {
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
+}
+
+.message-admin-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.message .banner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.message .id {
+    font-size: 0.8rem;
+    color: gray;
+    text-align: left;
+    justify-self: center;
+    align-self: center;
+}
+
+.message .info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-self: flex-start;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.message .info p {
+    margin: 0;
+}
+
+/* .message .info a {
+    color: grey
+} */
+
+.message .info span {
+    color: white
+}
+
+.message .message-content {
+    text-align: left;
+    border-color: grey;
+}
+
+.message .message-content legend {
+    /* color: rgb(175, 175, 175); */
+    color: grey;
+}

@@ -14,16 +14,18 @@
 
 import '../styles/scenes/Contact.css';
 
-import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 import { useState } from 'react';
+
+import ContactMessages from '../components/misc/ContactMessages';
 
 export default function Contact () {
 
-    const navigate = useNavigate();
+    const { isAdmin } = useUser();
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+    const [form, setForm] = useState({
+        firstname: '',
+        lastname: '',
         phone: '',
         email: '',
         message: ''
@@ -31,7 +33,7 @@ export default function Contact () {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setForm(prev => ({
             ...prev,
             [name]: value
         }));
@@ -39,32 +41,48 @@ export default function Contact () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.log(formData);
+
+        const formData = new FormData();
+        formData.append("firstname", form.firstname);
+        formData.append("lastname", form.lastname);
+        formData.append("phone", form.phone.trim() === '' ? null : form.phone);
+        formData.append("email", form.email);
+        formData.append("message", form.message);
 
         fetch('http://localhost:3000/api/contacts', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                firstname: formData.firstName,
-                lastname: formData.lastName,
-                email: formData.email
-            })
+            credentials: 'include',
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
+            setForm({
+                firstname: '',
+                lastname: '',
+                phone: '',
+                email: '',
+                message: ''
+            });
         })
         .catch(error => {
             console.error('Error:', error);
         });
     };
 
+    const [showMessages, setShowMessages] = useState(false);
+    const toggleViewMessages = () => {
+        setShowMessages(!showMessages);
+    }
+
     return (
         <div className="contact">
+            
+            { showMessages && <ContactMessages onClose={toggleViewMessages} />}
+
             <div className="page-title">CONTACT ME</div>
+            
+            { isAdmin && <button className="admin-banner" onClick={toggleViewMessages}>See Messages</button> }
 
             <div className='contact-container'>
                 <div className="contact-info">
@@ -76,22 +94,22 @@ export default function Contact () {
                 </div>
 
                 <form onSubmit={handleSubmit} className="contact-form">
-                    <label htmlFor="firstName">First Name:</label>
+                    <label htmlFor="firstname">First Name:</label>
                     <input
-                        id="firstName"
+                        id="firstname"
                         type="text"
-                        name="firstName"
-                        value={formData.firstName}
+                        name="firstname"
+                        value={form.firstname}
                         onChange={handleChange}
                         required
                     />
 
-                    <label htmlFor="lastName">Last Name:</label>
+                    <label htmlFor="lastname">Last Name:</label>
                     <input
-                        id="lastName"
+                        id="lastname"
                         type="text"
-                        name="lastName"
-                        value={formData.lastName}
+                        name="lastname"
+                        value={form.lastname}
                         onChange={handleChange}
                         required
                     />
@@ -101,9 +119,8 @@ export default function Contact () {
                         id="phone"
                         type="tel"
                         name="phone"
-                        value={formData.phone}
+                        value={form.phone}
                         onChange={handleChange}
-                        required
                     />
 
                     <label htmlFor="email">Your Email:</label>
@@ -111,7 +128,7 @@ export default function Contact () {
                         id="email"
                         type="email"
                         name="email"
-                        value={formData.email}
+                        value={form.email}
                         onChange={handleChange}
                         required
                     />
@@ -121,7 +138,7 @@ export default function Contact () {
                         id="message"
                         name="message"
                         rows="5"
-                        value={formData.message}
+                        value={form.message}
                         onChange={handleChange}
                         required
                     ></textarea>
