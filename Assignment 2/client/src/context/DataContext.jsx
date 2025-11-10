@@ -20,7 +20,6 @@ export const DataProvider = ({ children }) => {
             const educationData = await getEducation();
             setProjects(projectsData);
             setEducation(educationData);
-            setContacts(contactsData);
         }
         fetchData();
     }, [isAdmin]);
