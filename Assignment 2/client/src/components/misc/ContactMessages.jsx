@@ -1,35 +1,15 @@
-
-
 import '../../styles/components/misc/ContactMessages.css';
 
-import { useEffect, useState } from 'react';
+import { useData } from '../../context/DataContext';
+
 import Message from '../cards/Message';
 
 export default function ContactMessages ({ onClose }) {
     
-    const [messages, setMessages] = useState([]);
-
-    const getMessages = async () => {
-        await fetch('http://localhost:3000/api/contacts', {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(response => response.json())
-        .then(data => setMessages(data))
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    useEffect(() => {
-        getMessages();
-    }, []);
+    const { contacts, setContacts } = useData();
     
     const handleDelete = (id) => {
-        setMessages(messages.filter(message => message._id !== id));
+        setContacts(contacts.filter(message => message._id !== id));
     }
 
     return (
@@ -44,8 +24,8 @@ export default function ContactMessages ({ onClose }) {
 
                     <div className='messages-list' style={{ maxHeight: '73vh', overflowY: 'auto', paddingRight: '8px', borderRadius: '15px' }}>
                         { 
-                            messages.length > 0 ? (
-                                messages.map((message) => (
+                            contacts.length > 0 ? (
+                                contacts.map((message) => (
                                     message ? (
                                     <Message
                                         key={message._id}

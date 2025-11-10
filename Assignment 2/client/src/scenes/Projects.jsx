@@ -15,14 +15,11 @@
 
 import '../styles/scenes/Projects.css';
 
-import Project from "../components/cards/Project.jsx";
-
-// import logoCalculator from '../assets/images/projects/project-calculator-logo.png';
-// import logoFitnessTrainer from '../assets/images/projects/project-fitness-logo.png';
-// import logoStockTrading from '../assets/images/projects/project-trading-logo.png';
 import { useUser } from '../context/UserContext.jsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useData } from '../context/DataContext.jsx';
 
+import Project from "../components/cards/Project.jsx";
 import ProjectEdit from '../components/cards/ProjectEdit.jsx';
 import ProjectCreate from '../components/cards/ProjectCreate.jsx';
 
@@ -30,26 +27,7 @@ export default function Projects () {
 
     const { isAdmin } = useUser();
 
-    const [projects, setProjects] = useState([]);
-
-    const getProjects = async () => {
-        await fetch('http://localhost:3000/api/projects', {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(response => response.json())
-        .then(data => setProjects(data))
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    useEffect(() => {
-        getProjects();
-    }, []);
+    const { projects, setProjects } = useData();
 
     const handleCreate = (newProject) => {
         setProjects([...projects, newProject]);

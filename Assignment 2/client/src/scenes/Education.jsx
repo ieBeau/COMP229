@@ -13,13 +13,11 @@
 
 import '../styles/scenes/Education.css';
 
-import School from '../components/cards/School.jsx';
-
-// import logoCentennialCollege from '../assets/images/school/school-centennial-logo.png'
-// import logoSenecaCollege from '../assets/images/school/school-seneca-logo.png'
-
 import { useUser } from '../context/UserContext.jsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useData } from '../context/DataContext.jsx';
+
+import School from '../components/cards/School.jsx';
 import SchoolCreate from '../components/cards/SchoolCreate.jsx';
 import SchoolEdit from '../components/cards/SchoolEdit.jsx';
 
@@ -27,26 +25,7 @@ export default function Education () {
 
     const { isAdmin } = useUser();
 
-    const [education, setEducation] = useState([]);
-
-    const getEducation = async () => {
-        await fetch('http://localhost:3000/api/education', {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(response => response.json())
-        .then(data => setEducation(data))
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    useEffect(() => {
-        getEducation();
-    }, []);
+    const { education, setEducation } = useData();
     
     const handleCreate = (newEducation) => {
         setEducation([...education, newEducation]);

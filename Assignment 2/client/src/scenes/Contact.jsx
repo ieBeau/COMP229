@@ -21,13 +21,13 @@ import ContactMessages from '../components/misc/ContactMessages';
 
 export default function Contact () {
 
-    const { isAdmin } = useUser();
+    const { user, isAdmin } = useUser();
 
     const [form, setForm] = useState({
-        firstname: '',
-        lastname: '',
+        firstname: user.username.split(' ')[0] || '',
+        lastname: user.username.split(' ')[1] || '',
         phone: '',
-        email: '',
+        email: user?.email || '',
         message: ''
     });
 

@@ -17,13 +17,10 @@ export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(getUserFromLocalStorage());
     
-
     useEffect(() => {
         setUser(getUserFromLocalStorage());
     }, []);
 
-    // let username = user ? user.username : null;
-    // let email = user ? user.email : null;
     let isAdmin = user ? user.admin === 'true' : false;
 
     const login = (form) => {
