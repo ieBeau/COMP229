@@ -26,14 +26,10 @@ const ProjectSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    descriptions: [{
+    description: {
         type: String,
         trim: true,
-        required: "Descriptions are required"
-    }],
-    image: {
-        data: { type: Buffer, default: null },
-        contentType: { type: String, default: null }
+        required: "Description is required"
     }
 });
 

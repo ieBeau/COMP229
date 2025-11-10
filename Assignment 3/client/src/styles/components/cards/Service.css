@@ -1,0 +1,39 @@
+.service {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #242424;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.service:hover {
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
+}
+
+.service-name {
+    font-size: 1.3em;
+    margin: 20px 0 10px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+}
+
+.service ul {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 1em;
+}
+
+.service img {
+    border-radius: 10px;
+}
+
+.service .details {
+    margin-left: 20px;
+    text-align: left;
+}

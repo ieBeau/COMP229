@@ -14,23 +14,14 @@
  * @returns {JSX.Element} The rendered project card with image, name, and descriptions.
  * 
  */
+
 import '../../styles/components/cards/Project.css';
 
-import { useUser } from '../../context/UserContext';
-
-import ButtonDelete from '../buttons/ButtonDelete';
-import ButtonEdit from '../buttons/ButtonEdit';
-
-export default function Project({ id, title, descriptions, image, url = "", onClickEdit, onClickDelete, size = 125 }) {
-
-    const { isAdmin } = useUser();
+export default function Project({ name, descriptions, image = "/logo.svg", url = "", size = 125 }) {
 
     // Clamp size between 50 and 125 to center images
     if (size > 125) size = 125;
     else if (size < 50) size = 50;
-    
-    // Default image if none provided
-    if (!image) image = "/logo.svg";
     
     const marginHelper = `${(150 - size) / 2}px`;
 
@@ -39,23 +30,11 @@ export default function Project({ id, title, descriptions, image, url = "", onCl
 
     return (
         <div className="project" onClick={() => url ? window.open(url, "_blank") : ""}>
-            <img src={image} alt={title} width={size} height={size} style={{ marginLeft: marginHelper, marginRight: marginHelper }} />
-            
+            <img src={image} alt={name} width={size} height={size} style={{ marginLeft: marginHelper, marginRight: marginHelper }} />
             <div className='details'>
-                <div className='project-header'>
-                    <div className='project-name'>{title}</div>
-
-                    { isAdmin ? 
-                        <div className='project-admin-buttons'>
-                            <ButtonEdit id={id} type="projects" onClick={() => onClickEdit()} />
-                            <ButtonDelete id={id} type="projects" onClick={() => onClickDelete()} />
-                        </div>
-                    : null }
-                </div>
-
+                <div className='project-name'>{name}</div>
                 <ul>{descriptionArray}</ul>
             </div>
-            
         </div>
     );
 }

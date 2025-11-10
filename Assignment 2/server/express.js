@@ -5,8 +5,6 @@ import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
 
-import config from "./config/config.js";
-
 import contactRoutes from './routes/contact.route.js';
 import projectRoutes from './routes/project.route.js';
 import educationRoutes from './routes/education.route.js';
@@ -21,10 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compress());
 app.use(helmet());
-app.use(cors({
-    origin: ['http://localhost:5173'],
-    credentials: true
-}));
+app.use(cors());
 
 app.use('/', authRoutes);
 app.use('/', userRoutes);

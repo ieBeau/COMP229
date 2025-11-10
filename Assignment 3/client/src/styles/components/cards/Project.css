@@ -1,0 +1,53 @@
+.project {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #242424;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.project:hover {
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
+}
+
+.project-name {
+    font-size: 1.3em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+}
+
+.project ul {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 1em
+}
+
+.project img {
+    border-radius: 10px;
+}
+
+.project .details {
+    margin-left: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.project .project-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-admin-buttons {
+    display: flex;
+    gap: 10px;
+}

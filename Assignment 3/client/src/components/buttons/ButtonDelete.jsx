@@ -36,7 +36,7 @@ export default function ButtonDelete({ id, type, onClick }) {
 
     return (
         <>
-            <button className="button-delete" onClick={() => setShowWarning(true)}>Delete</button>
+            <button className="button-delete" onClick={(e) => { e.stopPropagation(); setShowWarning(true); }}>Delete</button>
             {
                 showWarning ? 
                     <WarningDelete 

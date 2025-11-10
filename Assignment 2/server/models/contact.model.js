@@ -17,16 +17,6 @@ const ContactSchema = new mongoose.Schema({
         unique: 'Email already exists',
         match: [/.+\@.+\..+/, 'Please fill a valid email address'],
         required: "Email is required"
-    },
-    phone: {
-        type: String,
-        trim: true,
-        default: null
-    },
-    message: {
-        type: String,
-        trim: true,
-        required: "Message is required"
     }
 });
 

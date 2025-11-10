@@ -1,0 +1,33 @@
+.main-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 0;
+}
+
+.logo {
+    width: 375px;
+    height: auto;
+    cursor: pointer;
+}
+
+.background {
+    position: absolute;
+    background-color: #242424;
+    width: 325px;
+    height: 205px;
+    top: 55px;
+    z-index: -1;
+}
+
+/* @media (prefers-color-scheme: light) {
+    .logo {
+        content: url('../../assets/images/logos/PM_Portfolio_Logo_SerifBlack.png');
+    }
+
+    .background {
+        background-color: #ffffff;
+    }
+} */

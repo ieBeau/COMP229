@@ -3,23 +3,7 @@ import ContactModel from '../models/contact.model.js'
 const getAllContacts = async (req, res) => {
     try {
         const contacts = await ContactModel.find();
-
-        const formatted = contacts.map(contact => {
-            let obj = contact.toObject();
-
-            for (const key in obj) {
-                if (obj[key] === 'null') obj[key] = null;
-            }
-
-            return {
-                ...obj,
-                image: obj.image
-                    ? `data:${obj.image.contentType};base64,${obj.image.data.toString('base64')}`
-                    : null
-            };
-        });
-
-        res.status(200).json(formatted);
+        res.status(200).json(contacts);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

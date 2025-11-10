@@ -16,15 +16,6 @@
     justify-content: center;
 }
 
-.admin-banner {
-    display: flex;
-    margin: 0 0 20px 0;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: medium;
-}
-
 @media (max-width: 1750px) {
     .projects .list {
         width: 80%;

@@ -150,7 +150,7 @@ export default function ProjectEdit ({ project, handleAction, onClose }) {
                             />
                         </div>
 
-                        <button type="submit">Edit Project</button>
+                        <button type="submit">Accept</button>
                     </form>
                 </div>
             </div>

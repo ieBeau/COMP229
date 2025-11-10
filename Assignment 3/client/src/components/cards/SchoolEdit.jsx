@@ -192,7 +192,7 @@ export default function SchoolEdit ({ school, handleAction, onClose }) {
                             />
                         </div>
 
-                        <button type="submit">Edit School</button>
+                        <button type="submit">Accept</button>
                     </form>
                 </div>
             </div>
