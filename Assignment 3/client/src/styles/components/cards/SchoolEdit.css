@@ -16,6 +16,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 95vh;
 }
 
 .edit-school-container .close-button {
@@ -30,6 +31,9 @@
     border-radius: 15px;
     width: 30vw;
     min-width: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,100,100,0.6) transparent;
 }
 
 .edit-school-container .school-form {
@@ -136,4 +140,23 @@
     font-size: 1em;
     color: #ccc;
     overflow-wrap: break-word;
+}
+
+/* WebKit browsers for scrollbar */
+.messages-list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.messages-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+.messages-list::-webkit-scrollbar-thumb {
+    background-color: rgba(100,100,100,0.6);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+.messages-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80,80,80,0.85);
 }

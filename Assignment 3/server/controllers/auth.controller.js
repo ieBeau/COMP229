@@ -11,7 +11,6 @@ const signin = async (req, res) => {
         
         const token = generateToken(user);
 
-        // same-origin usage; set cookie options suitable for localhost and production
         const cookieOptions = {
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
         };

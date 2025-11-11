@@ -24,8 +24,8 @@ export default function Contact () {
     const { user, isAdmin } = useUser();
 
     const [form, setForm] = useState({
-        firstname: user.username.split(' ')[0] || '',
-        lastname: user.username.split(' ')[1] || '',
+        firstname: user?.username.split(' ')[0] || '',
+        lastname: user?.username.split(' ')[1] || '',
         phone: '',
         email: user?.email || '',
         message: ''

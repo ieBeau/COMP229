@@ -102,10 +102,10 @@ export default function ProjectCreate ({ handleAction, onClose }) {
                     <h2>Add New Project</h2>
 
                     <form className='project-form' onSubmit={handleSubmit}>
-                        <label className='project-title'>Project Title</label>
+                        <label className='project-title'>Project Title *</label>
                         <input type="text" name="title" placeholder="Project Title" onChange={handleChange} required />
 
-                        <label className='project-descriptions'>Project Descriptions</label>
+                        <label className='project-descriptions'>Project Descriptions *</label>
                         <textarea name="description1" placeholder="Project Description 1" onChange={handleChange}></textarea>
                         <textarea name="description2" placeholder="Project Description 2" onChange={handleChange}></textarea>
                         <textarea name="description3" placeholder="Project Description 3" onChange={handleChange}></textarea>

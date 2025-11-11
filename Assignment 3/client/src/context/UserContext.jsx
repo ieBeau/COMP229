@@ -37,6 +37,8 @@ export const UserProvider = ({ children }) => {
         })
         .then(response => response.json())
         .then(data => {
+            if (data.error) throw new Error(data.error);
+
             localStorage.setItem('token', data.token);
             localStorage.setItem('username', data.user.name);
             localStorage.setItem('email', data.user.email);
@@ -46,9 +48,6 @@ export const UserProvider = ({ children }) => {
                 setUser({ username: data.user.name, email: data.user.email, admin: data.user.admin.toString() });
                 return true;
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
         });
 
         return response;

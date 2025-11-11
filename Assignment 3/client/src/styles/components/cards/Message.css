@@ -2,7 +2,6 @@
     background-color: #242424;
     padding: 25px;
     border-radius: 15px;
-    /* cursor: pointer; */
 }
 
 .message:hover {
@@ -43,11 +42,11 @@
 
 .message .info p {
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
-
-/* .message .info a {
-    color: grey
-} */
 
 .message .info span {
     color: white

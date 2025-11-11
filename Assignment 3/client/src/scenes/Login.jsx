@@ -8,6 +8,9 @@ import { useUser } from '../context/UserContext';
 export default function Login () {
 
     const navigate = useNavigate();
+    
+    const emailEl = document.getElementById('email');
+    const notFoundEl = document.getElementById('not-found');
 
     const [form, setForm] = useState({
         email: '',
@@ -20,6 +23,8 @@ export default function Login () {
             ...prev,
             [name]: value
         }));
+        
+        if (notFoundEl) notFoundEl.hidden = true;
     };
 
     const { login } = useUser();
@@ -30,6 +35,13 @@ export default function Login () {
         login(form)
         .then(success => {
             if (success) navigate('/');
+        })
+        .catch(error => {
+            if (emailEl) emailEl.focus();
+            if (notFoundEl) {
+                notFoundEl.innerText = error.message || 'User Not Found!';
+                notFoundEl.hidden = false;
+            }
         });
     };
 
@@ -61,7 +73,9 @@ export default function Login () {
                     />
 
                     <button type="submit">Send</button>
+                    <span id='not-found' hidden />
                 </form>
+
             </div>
         </div>
     )

@@ -76,16 +76,22 @@ export default function Header() {
                 <MainLogo />
 
                 <div className='navigation'>
-
-                    <nav>
-                        <Link to="/">HOME</Link>
-                        <Link to="/about">ABOUT</Link>
-                        <Link to="/projects">PROJECTS</Link>
-                        <Link to="/education">EDUCATION</Link>
-                        <Link to="/services">SERVICES</Link>
-                        <Link to="/contact">CONTACT</Link>
-                    </nav>
-
+                    {
+                        user ? (
+                            <nav>
+                                <Link to="/">HOME</Link>
+                                <Link to="/about">ABOUT</Link>
+                                <Link to="/projects">PROJECTS</Link>
+                                <Link to="/education">EDUCATION</Link>
+                                <Link to="/services">SERVICES</Link>
+                                <Link to="/contact">CONTACT</Link>
+                            </nav>
+                        ) : (
+                            <nav>
+                                <Link to="/contact">CONTACT</Link>
+                            </nav>
+                        )
+                    }
                     <div className="line" />
                 </div>
             </div>

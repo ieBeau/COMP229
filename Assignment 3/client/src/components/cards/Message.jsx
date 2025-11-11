@@ -1,6 +1,6 @@
+import '../../styles/components/cards/Message.css';
 
 import { useUser } from '../../context/UserContext';
-import '../../styles/components/cards/Message.css';
 
 import ButtonDelete from '../buttons/ButtonDelete';
 

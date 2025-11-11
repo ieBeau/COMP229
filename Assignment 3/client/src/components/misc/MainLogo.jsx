@@ -18,14 +18,17 @@ import '../../styles/components/misc/MainLogo.css'
 import logo from '../../assets/images/logos/PM_Portfolio_Logo_SerifWhite.png';
 
 import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../context/UserContext';
 
 export default function MainLogo() {
     
     const navigate = useNavigate();
 
+    const { user } = useUser();
+
     return (
         <div className='main-logo'>
-            <img className="logo" src={logo} alt="Logo" onClick={() => navigate('/')} />
+            <img className="logo" src={logo} alt="Logo" onClick={() => user ? navigate('/') : navigate('/login')} />
             <div className='background' />
         </div>
     );

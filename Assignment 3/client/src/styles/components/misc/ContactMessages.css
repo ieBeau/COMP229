@@ -1,7 +1,5 @@
 .contact-message-backdrop {
     position: fixed;
-    display: flex;
-    flex-direction: column;
     top: 0;
     left: 0;
     right: 0;
@@ -18,6 +16,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-height: 95vh;
 }
 
 .contact-message-container .close-button {
@@ -31,19 +30,19 @@
     z-index: 20;
     border-radius: 15px;
     width: 30vw;
-    height: 80vh;
     min-width: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,100,100,0.6) transparent;
 }
 
 .messages-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 100%;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(100,100,100,0.6) transparent;
-    
 }
 
 /* WebKit browsers for scrollbar */
