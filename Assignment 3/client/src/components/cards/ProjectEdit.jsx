@@ -3,6 +3,8 @@ import '../../styles/components/cards/ProjectEdit.css';
 import { useEffect, useState } from "react";
 import { useData } from '../../context/DataContext';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function ProjectEdit ({ project, onClose }) {
 
     const { projects, setProjects } = useData();
@@ -99,7 +101,7 @@ export default function ProjectEdit ({ project, onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch(`/api/projects/${project._id}`, {
+        fetch(`${SERVER_URL}/api/projects/${project._id}`, {
             method: 'PUT',
             credentials: 'include',
             body: formData

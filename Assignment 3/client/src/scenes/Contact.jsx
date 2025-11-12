@@ -19,6 +19,8 @@ import { useState } from 'react';
 
 import ContactMessages from '../components/misc/ContactMessages';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function Contact () {
 
     const { user, isAdmin } = useUser();
@@ -49,7 +51,7 @@ export default function Contact () {
         formData.append("email", form.email);
         formData.append("message", form.message);
 
-        fetch('http://localhost:3000/api/contacts', {
+        fetch(`${SERVER_URL}/api/contacts`, {
             method: 'POST',
             credentials: 'include',
             body: formData

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useData } from '../../context/DataContext';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function SchoolCreate ({ onClose }) {
 
     const { user } = useUser();
@@ -64,7 +66,7 @@ export default function SchoolCreate ({ onClose }) {
         formData.append("url", form.url);
         formData.append("image", form.image);
 
-        fetch('/api/education', {
+        fetch(`${SERVER_URL}/api/education`, {
             method: 'POST',
             credentials: 'include',
             body: formData

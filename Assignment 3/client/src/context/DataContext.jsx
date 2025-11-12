@@ -5,6 +5,8 @@ import { useUser } from "./UserContext";
 // Context
 const DataContext = createContext();
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 // Provider
 export const DataProvider = ({ children }) => {
 
@@ -40,7 +42,7 @@ export const DataProvider = ({ children }) => {
 };
 
 const getProjects = async () => {
-    const response =  await fetch('/api/projects', {
+    const response =  await fetch(`${SERVER_URL}/api/projects`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -60,7 +62,7 @@ const getProjects = async () => {
 };
 
 const getEducation = async () => {
-    const response = await fetch('/api/education', {
+    const response = await fetch(`${SERVER_URL}/api/education`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -80,7 +82,7 @@ const getEducation = async () => {
 };
 
 const getContacts = async () => {
-    const response = await fetch('/api/contacts', {
+    const response = await fetch(`${SERVER_URL}/api/contacts`, {
             method: 'GET',
             credentials: 'include',
             headers: {

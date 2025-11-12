@@ -5,6 +5,8 @@ import { useData } from '../../context/DataContext';
 
 import WarningDelete from '../warnings/WarningDelete';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function ButtonDelete({ id, type }) {
 
     const [showWarning, setShowWarning] = useState(false);
@@ -19,7 +21,7 @@ export default function ButtonDelete({ id, type }) {
             return;
         }
 
-        fetch(`/api/${type}/${id}`, {
+        fetch(`${SERVER_URL}/api/${type}/${id}`, {
             method: 'DELETE',
             credentials: 'include',
             headers: {

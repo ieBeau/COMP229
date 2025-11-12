@@ -15,16 +15,19 @@ import '../../styles/components/layouts/Header.css'
 
 import { Link } from 'react-router-dom'
 
+import { useUser } from '../../context/UserContext';
+
 import HeaderBackground from '../backgrounds/HeaderBackground';
 import MainLogo from '../misc/MainLogo';
-import { useUser } from '../../context/UserContext';
+
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
 
 export default function Header() {
 
     const { user, isAdmin, logout } = useUser();
 
     const handleLogout = (e) => {
-        fetch('http://localhost:3000/auth/signout', {
+        fetch(`${SERVER_URL}/auth/signout`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

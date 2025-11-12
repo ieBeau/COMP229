@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 // Context
 const UserContext = createContext();
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 // Provider
 export const UserProvider = ({ children }) => {
     
@@ -24,7 +26,7 @@ export const UserProvider = ({ children }) => {
     let isAdmin = user ? user.admin === 'true' : false;
 
     const login = (form) => {
-        const response = fetch('/auth/signin', {
+        const response = fetch(`${SERVER_URL}/auth/signin`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -56,7 +58,7 @@ export const UserProvider = ({ children }) => {
     const logout = () => setUser(null);
 
     const register = (form) => {
-        const response = fetch('/api/users', {
+        const response = fetch(`${SERVER_URL}/api/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

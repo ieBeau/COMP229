@@ -3,6 +3,8 @@ import '../../styles/components/cards/SchoolEdit.css';
 import { useEffect, useState } from "react";
 import { useData } from '../../context/DataContext';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function SchoolEdit ({ school, onClose }) {
 
     const { education, setEducation } = useData();
@@ -112,7 +114,7 @@ export default function SchoolEdit ({ school, onClose }) {
         formData.append("url", form.url);
         formData.append("image", form.image);
 
-        fetch(`http://localhost:3000/api/education/${school._id}`, {
+        fetch(`${SERVER_URL}/api/education/${school._id}`, {
             method: 'PUT',
             credentials: 'include',
             body: formData

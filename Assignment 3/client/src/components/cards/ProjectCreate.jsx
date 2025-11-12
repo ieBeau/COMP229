@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useData } from '../../context/DataContext';
 
+const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+
 export default function ProjectCreate ({ onClose }) {
 
     const { user } = useUser();
@@ -80,7 +82,7 @@ export default function ProjectCreate ({ onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch('/api/projects', {
+        fetch(`${SERVER_URL}/api/projects`, {
             method: 'POST',
             credentials: 'include',
             body: formData
