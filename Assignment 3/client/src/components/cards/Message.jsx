@@ -4,7 +4,7 @@ import { useUser } from '../../context/UserContext';
 
 import ButtonDelete from '../buttons/ButtonDelete';
 
-export default function Message({ id, firstname, lastname, email, phone, message, onClickDelete }) {
+export default function Message({ id, firstname, lastname, email, phone, message }) {
 
     const { isAdmin } = useUser();
 
@@ -26,7 +26,7 @@ export default function Message({ id, firstname, lastname, email, phone, message
 
                 { isAdmin ? 
                     <div className='message-admin-buttons'>
-                        <ButtonDelete id={id} type="contacts" onClick={() => onClickDelete()} />
+                        <ButtonDelete id={id} type="contacts" />
                     </div>
                 : null }
             </div>

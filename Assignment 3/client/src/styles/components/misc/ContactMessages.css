@@ -43,6 +43,9 @@
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(100,100,100,0.6) transparent;
+    max-height: 73vh;
+    padding-right: 8px;
+    border-radius: 15px;
 }
 
 /* WebKit browsers for scrollbar */

@@ -27,21 +27,7 @@ export default function Projects () {
 
     const { isAdmin } = useUser();
 
-    const { projects, setProjects } = useData();
-
-    const handleCreate = (newProject) => {
-        setProjects([...projects, newProject]);
-    }
-
-    const handleEdit = (newProject) => {
-        setProjects(projects.map(project => 
-            project._id === newProject._id ? { ...project, ...newProject } : project
-        ));
-    }
-
-    const handleDelete = (id) => {
-        setProjects(projects.filter(project => project._id !== id));
-    }
+    const { projects } = useData();
 
     const [currentProject, setCurrentProject] = useState(null);
     const [showEditProjectForm, setShowEditProjectForm] = useState(false);
@@ -57,9 +43,9 @@ export default function Projects () {
     return (
         <div className="projects">
 
-            { showCreateProjectForm && <ProjectCreate handleAction={handleCreate} onClose={toggleCreateProjectForm} />}
+            { showCreateProjectForm && <ProjectCreate onClose={toggleCreateProjectForm} />}
 
-            { showEditProjectForm && <ProjectEdit project={currentProject} handleAction={handleEdit} onClose={toggleEditProjectForm} /> }
+            { showEditProjectForm && <ProjectEdit project={currentProject} onClose={toggleEditProjectForm} /> }
 
             <div className="page-title">PERSONAL PROJECTS</div>
             
@@ -68,7 +54,7 @@ export default function Projects () {
             <div className="list">
                 {
                     projects.length > 0 ? (
-                        projects.map((project) => (
+                        projects.map(project => (
                             project ?
                             <Project
                                 key={project._id}
@@ -76,8 +62,7 @@ export default function Projects () {
                                 title={project.title}
                                 descriptions={project.descriptions}
                                 image={project.image}
-                                onClickEdit={() => { toggleEditProjectForm(), setCurrentProject(project) }}
-                                onClickDelete={() => handleDelete(project._id)}
+                                onClickEdit={() => { toggleEditProjectForm(); setCurrentProject(project); }}
                             />
                             : <></>
                         ))

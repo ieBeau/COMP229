@@ -28,9 +28,13 @@ import { useUser } from '../../context/UserContext';
 import ButtonDelete from '../buttons/ButtonDelete';
 import ButtonEdit from '../buttons/ButtonEdit';
 
-export default function School({ id, school, degree, program, studentGPA, schoolGPA, start, end, location, image, url = "", onClickEdit, onClickDelete }) {
+export default function School({ id, school, degree, program, studentGPA, schoolGPA, start, end, location, image, url = "", onClickEdit, size = 125 }) {
 
     const { isAdmin } = useUser();
+    
+    // Clamp size between 50 and 125 to center images
+    if (size > 125) size = 125;
+    else if (size < 50) size = 50;
 
     const graduated = new Date() >= new Date(end);
     
@@ -68,8 +72,8 @@ export default function School({ id, school, degree, program, studentGPA, school
 
                     { isAdmin ? 
                         <div className='school-admin-buttons'>
-                            <ButtonEdit id={id} type="education" onClick={() => onClickEdit()} />
-                            <ButtonDelete id={id} type="education" onClick={() => onClickDelete()} />
+                            <ButtonEdit onClick={onClickEdit} />
+                            <ButtonDelete id={id} type="education" />
                         </div>
                     : null }
                 </div>

@@ -40,7 +40,7 @@ export const DataProvider = ({ children }) => {
 };
 
 const getProjects = async () => {
-    const response =  await fetch('http://localhost:3000/api/projects', {
+    const response =  await fetch('/api/projects', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -60,7 +60,7 @@ const getProjects = async () => {
 };
 
 const getEducation = async () => {
-    const response = await fetch('http://localhost:3000/api/education', {
+    const response = await fetch('/api/education', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -80,7 +80,7 @@ const getEducation = async () => {
 };
 
 const getContacts = async () => {
-    const response = await fetch('http://localhost:3000/api/contacts', {
+    const response = await fetch('/api/contacts', {
             method: 'GET',
             credentials: 'include',
             headers: {

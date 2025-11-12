@@ -22,7 +22,10 @@ app.use(cookieParser());
 app.use(compress());
 app.use(helmet());
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: [
+        'http://localhost:5173', 
+        'https://comp229-moreau-client.com'
+    ],
     credentials: true
 }));
 

@@ -2,10 +2,12 @@ import '../../styles/components/cards/SchoolCreate.css';
 
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
+import { useData } from '../../context/DataContext';
 
-export default function SchoolCreate ({ handleAction, onClose }) {
+export default function SchoolCreate ({ onClose }) {
 
     const { user } = useUser();
+    const { education, setEducation } = useData();
 
     const [form, setForm] = useState({
         firstname: user.username.split(' ')[0] || "",
@@ -62,13 +64,15 @@ export default function SchoolCreate ({ handleAction, onClose }) {
         formData.append("url", form.url);
         formData.append("image", form.image);
 
-        fetch('http://localhost:3000/api/education', {
+        fetch('/api/education', {
             method: 'POST',
             credentials: 'include',
             body: formData
         })
         .then(response => response.json())
-        .then(data => handleAction(data))
+        .then(data => {
+            setEducation([...education, data]);
+        })
         .catch(error => {
             console.error('Error:', error);
         });

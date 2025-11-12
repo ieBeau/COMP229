@@ -1,8 +1,11 @@
 import '../../styles/components/cards/ProjectEdit.css';
 
 import { useEffect, useState } from "react";
+import { useData } from '../../context/DataContext';
 
-export default function ProjectEdit ({ project, handleAction, onClose }) {
+export default function ProjectEdit ({ project, onClose }) {
+
+    const { projects, setProjects } = useData();
 
     const [form, setForm] = useState({
         firstname: project.firstname,
@@ -96,13 +99,17 @@ export default function ProjectEdit ({ project, handleAction, onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch(`http://localhost:3000/api/projects/${project._id}`, {
+        fetch(`/api/projects/${project._id}`, {
             method: 'PUT',
             credentials: 'include',
             body: formData
         })
         .then(response => response.json())
-        .then(data => handleAction(data))
+        .then(data => {
+            setProjects(projects.map(proj => 
+                proj._id === project._id ? { ...proj, ...data } : proj
+            ));
+        })
         .catch(error => {
             console.error('Error:', error);
         });

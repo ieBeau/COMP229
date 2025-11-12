@@ -8,5 +8,11 @@ export default defineConfig({
     allowedHosts: [
       'comp229-moreau-portfolio.onrender.com'
     ]
+  },
+  server: {
+    proxy: {
+      '/auth': 'http://localhost:3000',
+      '/api': 'http://localhost:3000'
+    }
   }
 })

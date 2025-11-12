@@ -6,11 +6,7 @@ import Message from '../cards/Message';
 
 export default function ContactMessages ({ onClose }) {
     
-    const { contacts, setContacts } = useData();
-    
-    const handleDelete = (id) => {
-        setContacts(contacts.filter(message => message._id !== id));
-    }
+    const { contacts } = useData();
 
     return (
         <div className='contact-message-backdrop' onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
@@ -22,10 +18,10 @@ export default function ContactMessages ({ onClose }) {
                     
                     <h2>Messages</h2>
 
-                    <div className='messages-list' style={{ maxHeight: '73vh', overflowY: 'auto', paddingRight: '8px', borderRadius: '15px' }}>
+                    <div className='messages-list'>
                         { 
                             contacts.length > 0 ? (
-                                contacts.map((message) => (
+                                contacts.map(message => (
                                     message ? (
                                     <Message
                                         key={message._id}
@@ -35,7 +31,6 @@ export default function ContactMessages ({ onClose }) {
                                         phone={message.phone}
                                         email={message.email}
                                         message={message.message}
-                                        onClickDelete={() => handleDelete(message._id)}
                                     />
                                     ) : null
                                 ))

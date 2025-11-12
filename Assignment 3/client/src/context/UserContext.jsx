@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
     let isAdmin = user ? user.admin === 'true' : false;
 
     const login = (form) => {
-        const response = fetch('http://localhost:3000/auth/signin', {
+        const response = fetch('/auth/signin', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -56,7 +56,7 @@ export const UserProvider = ({ children }) => {
     const logout = () => setUser(null);
 
     const register = (form) => {
-        const response = fetch('http://localhost:3000/api/users', {
+        const response = fetch('/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

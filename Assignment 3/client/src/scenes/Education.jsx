@@ -25,21 +25,7 @@ export default function Education () {
 
     const { isAdmin } = useUser();
 
-    const { education, setEducation } = useData();
-    
-    const handleCreate = (newEducation) => {
-        setEducation([...education, newEducation]);
-    }
-
-    const handleEdit = (newEducation) => {
-        setEducation(education.map(edu => 
-            edu._id === newEducation._id ? { ...edu, ...newEducation } : edu
-        ));
-    }
-
-    const handleDelete = (id) => {
-        setEducation(education.filter(edu => edu._id !== id));
-    }
+    const { education } = useData();
     
     const [currentEducation, setCurrentEducation] = useState(null);
     const [showEditEducationForm, setShowEditEducationForm] = useState(false);
@@ -55,9 +41,9 @@ export default function Education () {
     return (
         <div className="education">
 
-            { showCreateEducationForm && <SchoolCreate handleAction={handleCreate} onClose={toggleCreateEducationForm} /> }
+            { showCreateEducationForm && <SchoolCreate onClose={toggleCreateEducationForm} /> }
 
-            { showEditEducationForm && <SchoolEdit school={currentEducation} handleAction={handleEdit} onClose={toggleEditEducationForm} /> }
+            { showEditEducationForm && <SchoolEdit school={currentEducation} onClose={toggleEditEducationForm} /> }
 
             <div className="page-title">EDUCATION</div>
 
@@ -81,8 +67,7 @@ export default function Education () {
                                 location={edu.location}
                                 url={edu.url}
                                 image={edu.image}
-                                onClickEdit={() => { toggleEditEducationForm(), setCurrentEducation(edu) }}
-                                onClickDelete={() => handleDelete(edu._id)}
+                                onClickEdit={() => { toggleEditEducationForm(); setCurrentEducation(edu); }}
                             />
                             : <></>
                         ))

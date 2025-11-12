@@ -1,8 +1,11 @@
 import '../../styles/components/cards/SchoolEdit.css';
 
 import { useEffect, useState } from "react";
+import { useData } from '../../context/DataContext';
 
-export default function SchoolEdit ({ school, handleAction, onClose }) {
+export default function SchoolEdit ({ school, onClose }) {
+
+    const { education, setEducation } = useData();
 
     const [form, setForm] = useState({
         firstname: school.firstname,
@@ -115,7 +118,11 @@ export default function SchoolEdit ({ school, handleAction, onClose }) {
             body: formData
         })
         .then(response => response.json())
-        .then(data => handleAction(data))
+        .then(data => {
+            setEducation(education.map(edu => 
+                edu._id === school._id ? { ...edu, ...data } : edu
+            ));
+        })
         .catch(error => {
             console.error('Error:', error);
         });

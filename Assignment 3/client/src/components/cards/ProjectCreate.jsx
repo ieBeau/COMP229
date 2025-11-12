@@ -2,10 +2,12 @@ import '../../styles/components/cards/ProjectCreate.css';
 
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
+import { useData } from '../../context/DataContext';
 
-export default function ProjectCreate ({ handleAction, onClose }) {
+export default function ProjectCreate ({ onClose }) {
 
     const { user } = useUser();
+    const { projects, setProjects } = useData();
 
     const [form, setForm] = useState({
         firstname: user.username.split(' ')[0] || "",
@@ -78,13 +80,15 @@ export default function ProjectCreate ({ handleAction, onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch('http://localhost:3000/api/projects', {
+        fetch('/api/projects', {
             method: 'POST',
             credentials: 'include',
             body: formData
         })
         .then(response => response.json())
-        .then(data => handleAction(data))
+        .then(data => {
+            setProjects([...projects, data]);
+        })
         .catch(error => {
             console.error('Error:', error);
         });
