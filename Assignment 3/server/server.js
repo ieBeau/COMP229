@@ -25,7 +25,7 @@ app.listen(config.port, (err) => {
   if (err) console.error(`Error starting server: ${err}`); 
   config.env === 'development'
     ? console.log(`Server running on http://localhost:${config.port}/`)
-    : console.log(`Server running on https://dailygrind-server.onrender.com`);
+    : console.log(`Server running on https://moreau-portfolio.onrender.com`);
 });
 
 export default app;
