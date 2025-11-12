@@ -30,7 +30,8 @@ export const UserProvider = ({ children }) => {
             method: 'POST',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 email: form.email,
@@ -61,7 +62,8 @@ export const UserProvider = ({ children }) => {
         const response = fetch(`${SERVER_URL}/api/users`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 name: form.name,

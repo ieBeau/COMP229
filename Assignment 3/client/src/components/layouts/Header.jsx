@@ -30,7 +30,8 @@ export default function Header() {
         fetch(`${SERVER_URL}/auth/signout`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())

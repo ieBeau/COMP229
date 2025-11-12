@@ -47,6 +47,7 @@ const getProjects = async () => {
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -67,6 +68,7 @@ const getEducation = async () => {
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -87,6 +89,7 @@ const getContacts = async () => {
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())

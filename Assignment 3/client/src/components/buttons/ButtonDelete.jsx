@@ -25,7 +25,8 @@ export default function ButtonDelete({ id, type }) {
             method: 'DELETE',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())
