@@ -15,10 +15,14 @@
 
 import '../styles/scenes/Services.css';
 
+import { useState } from 'react';
+
 import { useUser } from '../context/UserContext.jsx';
 import { useData } from '../context/DataContext.jsx';
 
 import Service from "../components/cards/Service.jsx";
+import ServiceCreate from '../components/cards/ServiceCreate.jsx';
+import ServiceEdit from '../components/cards/ServiceEdit.jsx';
 
 // import logoWebDev from '../assets/images/services/service-web-dev.png';
 // import logoMobileDev from '../assets/images/services/service-mobile-dev.png';
@@ -32,14 +36,31 @@ export default function Services () {
     const { isAdmin } = useUser();
     const { isLoading, services } = useData();
 
+    const [currentService, setCurrentService] = useState(null);
+    const [showEditServiceForm, setShowEditServiceForm] = useState(false);
+    const toggleEditServiceForm = () => {
+        setShowEditServiceForm(!showEditServiceForm);
+    }
+    
+    const [showCreateServiceForm, setShowCreateServiceForm] = useState(false);
+    const toggleCreateServiceForm = () => {
+        setShowCreateServiceForm(!showCreateServiceForm);
+    }
+
     return (
         <div className="services">
+        
+            { showCreateServiceForm && <ServiceCreate onClose={toggleCreateServiceForm} />}
+            { showEditServiceForm && <ServiceEdit service={currentService} onClose={toggleEditServiceForm} /> }
+
             <div className="page-title">MY SERVICES</div>
 
+            { isAdmin && <button className="admin-banner" onClick={toggleCreateServiceForm}>Add Service</button> }
+            
             <div className="list">
                 {
                     isLoading ? (
-                        <p>Loading services...</p>
+                        <p className='placeholder'>Loading services...</p>
                     ) : (
                         services.length > 0 ? (
                             services.map(service => (
@@ -55,7 +76,7 @@ export default function Services () {
                                 : <></>
                             ))
                         ) : (
-                            <p>No services found.</p>
+                            <p className='placeholder'>No services found.</p>
                         )
                     )
                 }

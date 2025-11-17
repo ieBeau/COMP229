@@ -16,11 +16,21 @@
 
 import '../../styles/components/cards/Service.css';
 
-export default function Service({ title, descriptions, image = "/logo.svg", url = "", size = 125 }) {
+import { useUser } from '../../context/UserContext';
 
-    // Clamp size between 50 and 125 to center images
-    if (size > 125) size = 125;
-    else if (size < 50) size = 50;
+import ButtonDelete from '../buttons/ButtonDelete';
+import ButtonEdit from '../buttons/ButtonEdit';
+
+export default function Service({ id, title, descriptions, image = "/logo.svg", url = "", onClickEdit, size = 125 }) {
+
+    const { isAdmin } = useUser();
+
+    // // Clamp size between 50 and 125 to center images
+    // if (size > 125) size = 125;
+    // else if (size < 50) size = 50;
+    
+    // Default image if none provided
+    if (!image) image = "/logo.svg";
     
     const marginHelper = `${(150 - size) / 2}px`;
 
@@ -31,7 +41,17 @@ export default function Service({ title, descriptions, image = "/logo.svg", url 
         <div className="service" onClick={() => url ? window.open(url, "_blank") : ""}>
             <img src={image} alt={title} width={size} height={size} style={{ marginLeft: marginHelper, marginRight: marginHelper }} />
             <div className='details'>
-                <div className='service-name'>{title}</div>
+                <div className='service-header'>
+                    <div className='service-name'>{title}</div>
+
+                    { isAdmin ? 
+                        <div className='service-admin-buttons'>
+                            <ButtonEdit onClick={onClickEdit} />
+                            <ButtonDelete id={id} type="services" />
+                        </div>
+                    : null }
+                </div>
+
                 <ul>{descriptionArray}</ul>
             </div>
         </div>

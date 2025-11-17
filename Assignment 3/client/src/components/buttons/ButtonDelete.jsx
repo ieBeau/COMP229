@@ -1,16 +1,17 @@
 import '../../styles/components/buttons/ButtonDelete.css';
 
 import { useState } from 'react';
+
+import { fetchApi } from '../../utils/api';
 import { useData } from '../../context/DataContext';
 
 import WarningDelete from '../warnings/WarningDelete';
-import { fetchApi } from '../../utils/api';
 
 export default function ButtonDelete({ id, type }) {
 
     const [showWarning, setShowWarning] = useState(false);
 
-    const { setProjects, setEducation, setContacts } = useData();
+    const { setProjects, setEducation, setServices, setContacts } = useData();
     
     const handleButtonDelete = (e) => {
         e.stopPropagation();
@@ -20,7 +21,7 @@ export default function ButtonDelete({ id, type }) {
             return;
         }
 
-        fetchApi(`${type}/${id}`, {
+        fetchApi(`/${type}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,6 +34,7 @@ export default function ButtonDelete({ id, type }) {
             
             if (type === 'projects') setProjects(prevProjects => prevProjects.filter(project => project._id !== id));
             else if (type === 'education') setEducation(prevEducation => prevEducation.filter(edu => edu._id !== id));
+            else if (type === 'services') setServices(prevServices => prevServices.filter(service => service._id !== id));
             else if (type === 'contacts') setContacts(prevContacts => prevContacts.filter(contact => contact._id !== id));
         })
         .catch(error => {

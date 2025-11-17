@@ -15,3 +15,8 @@
     border-radius: 10px;
     gap: 40px;
 }
+
+.education .placeholder {
+    color: white;
+    font-size: 24px;
+}

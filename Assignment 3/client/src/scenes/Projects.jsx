@@ -43,7 +43,6 @@ export default function Projects () {
         <div className="projects">
 
             { showCreateProjectForm && <ProjectCreate onClose={toggleCreateProjectForm} />}
-
             { showEditProjectForm && <ProjectEdit project={currentProject} onClose={toggleEditProjectForm} /> }
 
             <div className="page-title">PERSONAL PROJECTS</div>
@@ -53,7 +52,7 @@ export default function Projects () {
             <div className="list">
                 {
                     isLoading ? (
-                        <p>Loading projects...</p>
+                        <p className='placeholder'>Loading projects...</p>
                     ) : (
                         projects.length > 0 ? (
                             projects.map(project => (
@@ -69,7 +68,7 @@ export default function Projects () {
                                 : <></>
                             ))
                         ) : (
-                            <p>No projects found.</p>
+                            <p className='placeholder'>No projects found.</p>
                         )
                     )
                 }
