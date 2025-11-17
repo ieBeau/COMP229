@@ -15,22 +15,51 @@
 
 import '../styles/scenes/Services.css';
 
+import { useUser } from '../context/UserContext.jsx';
+import { useData } from '../context/DataContext.jsx';
+
 import Service from "../components/cards/Service.jsx";
 
-import logoWebDev from '../assets/images/services/service-web-dev.png';
-import logoMobileDev from '../assets/images/services/service-mobile-dev.png';
-import logoBackendDev from '../assets/images/services/service-backend-dev.png';
-import logoFullstackDev from '../assets/images/services/service-fullstack-dev.png';
-import logoDatabase from '../assets/images/services/service-database.png';
-import logoCloudComputing from '../assets/images/services/service-cloud-computing.png';
+// import logoWebDev from '../assets/images/services/service-web-dev.png';
+// import logoMobileDev from '../assets/images/services/service-mobile-dev.png';
+// import logoBackendDev from '../assets/images/services/service-backend-dev.png';
+// import logoFullstackDev from '../assets/images/services/service-fullstack-dev.png';
+// import logoDatabase from '../assets/images/services/service-database.png';
+// import logoCloudComputing from '../assets/images/services/service-cloud-computing.png';
 
 export default function Services () {
+    
+    const { isAdmin } = useUser();
+    const { isLoading, services } = useData();
+
     return (
         <div className="services">
             <div className="page-title">MY SERVICES</div>
 
             <div className="list">
-                <Service
+                {
+                    isLoading ? (
+                        <p>Loading services...</p>
+                    ) : (
+                        services.length > 0 ? (
+                            services.map(service => (
+                                service ?
+                                <Service
+                                    key={service._id}
+                                    id={service._id}
+                                    title={service.title}
+                                    descriptions={service.descriptions}
+                                    image={service.image}
+                                    onClickEdit={() => { toggleEditServiceForm(); setCurrentService(service); }}
+                                />
+                                : <></>
+                            ))
+                        ) : (
+                            <p>No services found.</p>
+                        )
+                    )
+                }
+                {/* <Service
                     name="Web Development"
                     descriptions={[
                         "Building responsive and user-friendly websites using modern web technologies",
@@ -89,7 +118,7 @@ export default function Services () {
                     ]}
                     image={logoCloudComputing}
                     size={100}
-                />
+                /> */}
             </div>
         </div>
     )

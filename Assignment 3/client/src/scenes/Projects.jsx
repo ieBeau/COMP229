@@ -26,8 +26,7 @@ import ProjectCreate from '../components/cards/ProjectCreate.jsx';
 export default function Projects () {
 
     const { isAdmin } = useUser();
-
-    const { projects } = useData();
+    const { isLoading, projects } = useData();
 
     const [currentProject, setCurrentProject] = useState(null);
     const [showEditProjectForm, setShowEditProjectForm] = useState(false);
@@ -53,21 +52,25 @@ export default function Projects () {
 
             <div className="list">
                 {
-                    projects.length > 0 ? (
-                        projects.map(project => (
-                            project ?
-                            <Project
-                                key={project._id}
-                                id={project._id}
-                                title={project.title}
-                                descriptions={project.descriptions}
-                                image={project.image}
-                                onClickEdit={() => { toggleEditProjectForm(); setCurrentProject(project); }}
-                            />
-                            : <></>
-                        ))
+                    isLoading ? (
+                        <p>Loading projects...</p>
                     ) : (
-                        <p>No projects found.</p>
+                        projects.length > 0 ? (
+                            projects.map(project => (
+                                project ?
+                                <Project
+                                    key={project._id}
+                                    id={project._id}
+                                    title={project.title}
+                                    descriptions={project.descriptions}
+                                    image={project.image}
+                                    onClickEdit={() => { toggleEditProjectForm(); setCurrentProject(project); }}
+                                />
+                                : <></>
+                            ))
+                        ) : (
+                            <p>No projects found.</p>
+                        )
                     )
                 }
 

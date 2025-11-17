@@ -5,11 +5,12 @@ import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
 
-import contactRoutes from './routes/contact.route.js';
+import authRoutes from './routes/auth.route.js';
+import userRoutes from './routes/user.route.js';
 import projectRoutes from './routes/project.route.js';
 import educationRoutes from './routes/education.route.js';
-import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js';
+import serviceRoutes from './routes/service.route.js';
+import contactRoutes from './routes/contact.route.js';
 
 const app = express();
 
@@ -29,9 +30,10 @@ app.use(cors({
 
 app.use('/', authRoutes);
 app.use('/', userRoutes);
-app.use('/', contactRoutes);
 app.use('/', projectRoutes);
 app.use('/', educationRoutes);
+app.use('/', serviceRoutes);
+app.use('/', contactRoutes);
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') res.status(401).json({"error" : err.name + ": " + err.message})

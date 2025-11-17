@@ -1,5 +1,5 @@
 // UserContext.js
-import { createContext, use, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "./UserContext";
 import { fetchApi } from "../utils/api";
 
@@ -11,16 +11,21 @@ export const DataProvider = ({ children }) => {
 
     const { user, isAdmin } = useUser();
 
+    const [isLoading, setIsLoading] = useState(true);
     const [projects, setProjects] = useState([]);
     const [education, setEducation] = useState([]);
+    const [services, setServices] = useState([]);
     const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             const projectsData = await getProjects();
             const educationData = await getEducation();
+            const servicesData = await getServices();
             setProjects(projectsData);
             setEducation(educationData);
+            setServices(servicesData);
+            setIsLoading(false);
         }
         if (user) fetchData();
     }, [user]);
@@ -34,7 +39,7 @@ export const DataProvider = ({ children }) => {
     }, [isAdmin]);
 
     return (
-        <DataContext.Provider value={{ projects, education, contacts, setProjects, setEducation, setContacts }}>
+        <DataContext.Provider value={{ isLoading, projects, education, services, contacts, setProjects, setEducation, setServices, setContacts }}>
             {children}
         </DataContext.Provider>
     );
@@ -79,6 +84,25 @@ const getEducation = async () => {
 
     return response;
 };
+
+const getServices = async () => {
+    const response = await fetchApi(`/services`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Services fetched!');
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    return response;
+}
 
 const getContacts = async () => {
     const response = await fetchApi(`/contacts`, {

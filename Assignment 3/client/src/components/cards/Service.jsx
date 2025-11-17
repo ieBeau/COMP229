@@ -16,7 +16,7 @@
 
 import '../../styles/components/cards/Service.css';
 
-export default function Service({ name, descriptions, image = "/logo.svg", url = "", size = 125 }) {
+export default function Service({ title, descriptions, image = "/logo.svg", url = "", size = 125 }) {
 
     // Clamp size between 50 and 125 to center images
     if (size > 125) size = 125;
@@ -29,9 +29,9 @@ export default function Service({ name, descriptions, image = "/logo.svg", url =
 
     return (
         <div className="service" onClick={() => url ? window.open(url, "_blank") : ""}>
-            <img src={image} alt={name} width={size} height={size} style={{ marginLeft: marginHelper, marginRight: marginHelper }} />
+            <img src={image} alt={title} width={size} height={size} style={{ marginLeft: marginHelper, marginRight: marginHelper }} />
             <div className='details'>
-                <div className='service-name'>{name}</div>
+                <div className='service-name'>{title}</div>
                 <ul>{descriptionArray}</ul>
             </div>
         </div>
