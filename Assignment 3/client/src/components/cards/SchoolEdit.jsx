@@ -2,8 +2,7 @@ import '../../styles/components/cards/SchoolEdit.css';
 
 import { useEffect, useState } from "react";
 import { useData } from '../../context/DataContext';
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import { fetchApi } from '../../utils/api';
 
 export default function SchoolEdit ({ school, onClose }) {
 
@@ -114,9 +113,8 @@ export default function SchoolEdit ({ school, onClose }) {
         formData.append("url", form.url);
         formData.append("image", form.image);
 
-        fetch(`${SERVER_URL}/api/education/${school._id}`, {
+        fetchApi(`/education/${school._id}`, {
             method: 'PUT',
-            credentials: 'include',
             body: formData
         })
         .then(response => response.json())

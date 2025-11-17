@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 
 import WarningDelete from '../warnings/WarningDelete';
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import { fetchApi } from '../../utils/api';
 
 export default function ButtonDelete({ id, type }) {
 
@@ -21,9 +20,8 @@ export default function ButtonDelete({ id, type }) {
             return;
         }
 
-        fetch(`${SERVER_URL}/api/${type}/${id}`, {
+        fetchApi(`${type}/${id}`, {
             method: 'DELETE',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`

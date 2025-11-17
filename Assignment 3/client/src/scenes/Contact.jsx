@@ -14,12 +14,12 @@
 
 import '../styles/scenes/Contact.css';
 
-import { useUser } from '../context/UserContext';
 import { useState } from 'react';
 
-import ContactMessages from '../components/misc/ContactMessages';
+import { fetchApi } from '../utils/api';
+import { useUser } from '../context/UserContext';
 
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import ContactMessages from '../components/misc/ContactMessages';
 
 export default function Contact () {
 
@@ -51,9 +51,8 @@ export default function Contact () {
         formData.append("email", form.email);
         formData.append("message", form.message);
 
-        fetch(`${SERVER_URL}/api/contacts`, {
+        fetchApi(`/contacts`, {
             method: 'POST',
-            credentials: 'include',
             body: formData
         })
         .then(response => response.json())

@@ -3,8 +3,7 @@ import '../../styles/components/cards/ProjectCreate.css';
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useData } from '../../context/DataContext';
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import { fetchApi } from '../../utils/api';
 
 export default function ProjectCreate ({ onClose }) {
 
@@ -82,9 +81,8 @@ export default function ProjectCreate ({ onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch(`${SERVER_URL}/api/projects`, {
+        fetchApi('/projects', {
             method: 'POST',
-            credentials: 'include',
             body: formData
         })
         .then(response => response.json())

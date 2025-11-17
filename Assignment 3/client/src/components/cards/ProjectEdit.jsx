@@ -2,8 +2,7 @@ import '../../styles/components/cards/ProjectEdit.css';
 
 import { useEffect, useState } from "react";
 import { useData } from '../../context/DataContext';
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import { fetchApi } from '../../utils/api';
 
 export default function ProjectEdit ({ project, onClose }) {
 
@@ -101,9 +100,8 @@ export default function ProjectEdit ({ project, onClose }) {
         const descriptions = form.descriptions.map(desc => desc.trim() + "\n");
         formData.append("descriptions", descriptions.filter(desc => desc.trim() !== ""));
 
-        fetch(`${SERVER_URL}/api/projects/${project._id}`, {
+        fetchApi(`/projects/${project._id}`, {
             method: 'PUT',
-            credentials: 'include',
             body: formData
         })
         .then(response => response.json())

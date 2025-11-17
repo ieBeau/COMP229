@@ -1,4 +1,4 @@
-import generateToken from '../utils/jwt.js'
+import { generateToken, verifyToken } from '../utils/jwt.js'
 
 import User from '../models/user.model.js'
 
@@ -33,4 +33,14 @@ const signout = (req, res) => {
     return res.status(200).json({ message: "signed out" });
 };
 
-export default { signin, signout }
+const validate = (req, res) => {
+    try {
+        const token = req.cookies.t;
+        const verify = verifyToken(token);
+        return res.status(200).json({ user: verify });
+    } catch (err) {
+        return res.status(401).json({ error: "Invalid token" });
+    }
+}
+
+export default { signin, signout, validate }

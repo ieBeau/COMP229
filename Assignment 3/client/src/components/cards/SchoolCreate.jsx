@@ -3,8 +3,7 @@ import '../../styles/components/cards/SchoolCreate.css';
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useData } from '../../context/DataContext';
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
+import { fetchApi } from '../../utils/api';
 
 export default function SchoolCreate ({ onClose }) {
 
@@ -66,9 +65,8 @@ export default function SchoolCreate ({ onClose }) {
         formData.append("url", form.url);
         formData.append("image", form.image);
 
-        fetch(`${SERVER_URL}/api/education`, {
+        fetchApi(`/education`, {
             method: 'POST',
-            credentials: 'include',
             body: formData
         })
         .then(response => response.json())

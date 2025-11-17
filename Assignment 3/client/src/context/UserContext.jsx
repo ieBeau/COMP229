@@ -1,37 +1,58 @@
 // UserContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 
+import { fetchAuth } from "../utils/api";
+
 // Context
 const UserContext = createContext();
-
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
 
 // Provider
 export const UserProvider = ({ children }) => {
     
+    const storeUserToLocalStorage = (user, token) => {
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', user.name);
+        localStorage.setItem('email', user.email);
+        localStorage.setItem('admin', user.admin);
+    }
+
+    const clearUserFromLocalStorage = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+        localStorage.removeItem('admin');
+        document.cookie = `t=; expires=${new Date(0).toUTCString()}; Max-Age=0; path=/`;
+        return null;
+    }
+
     const getUserFromLocalStorage = () => {
-        const token = localStorage.getItem('token');
         const username = localStorage.getItem('username');
         const email = localStorage.getItem('email');
-        const admin = localStorage.getItem('admin');
-        return token && username ? { username, email, admin } : null;
+        const admin = localStorage.getItem('admin') === 'true';
+
+        return username ? { username, email, admin } : null;
     }
 
     const [user, setUser] = useState(getUserFromLocalStorage());
-    
+
     useEffect(() => {
-        setUser(getUserFromLocalStorage());
+        const validateUser = async () => {
+            const user = await validateToken();
+
+            if (!user || user.exp * 1000 < Date.now()) return logout();
+
+            setUser(getUserFromLocalStorage());
+        };
+        validateUser();
     }, []);
 
-    let isAdmin = user ? user.admin === 'true' : false;
+    let isAdmin = user ? user.admin === true : false;
 
     const login = (form) => {
-        const response = fetch(`${SERVER_URL}/auth/signin`, {
+        const response = fetchAuth(`/signin`, {
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 email: form.email,
@@ -42,13 +63,13 @@ export const UserProvider = ({ children }) => {
         .then(data => {
             if (data.error) throw new Error(data.error);
 
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('username', data.user.name);
-            localStorage.setItem('email', data.user.email);
-            localStorage.setItem('admin', data.user.admin);
+            const userData = data.user;
+            const tokenData = data.token;
 
-            if (data.token && data.user.name) {
-                setUser({ username: data.user.name, email: data.user.email, admin: data.user.admin.toString() });
+            storeUserToLocalStorage(userData, tokenData);
+
+            if (tokenData && userData.name) {
+                setUser({ username: userData.name, email: userData.email, admin: userData.admin });
                 return true;
             }
         });
@@ -56,14 +77,29 @@ export const UserProvider = ({ children }) => {
         return response;
     }
 
-    const logout = () => setUser(null);
-
-    const register = (form) => {
-        const response = fetch(`${SERVER_URL}/api/users`, {
-            method: 'POST',
+    const logout = () => {
+        fetchAuth('/signout', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(response => response.json())
+        .then(_ => {
+            clearUserFromLocalStorage();
+            setUser(null);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    const register = (form) => {
+        const response = fetchAuth(`/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 name: form.name,
@@ -80,6 +116,22 @@ export const UserProvider = ({ children }) => {
         });
 
         return response;
+    }
+    
+    const validateToken = async () => {
+        try {
+            const response = await fetchAuth(`/validate`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = await response.json();
+            return data.user;
+        } catch (err) {
+            return null;
+        }
     }
 
     return (

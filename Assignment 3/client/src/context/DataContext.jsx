@@ -1,16 +1,15 @@
 // UserContext.js
 import { createContext, use, useContext, useEffect, useState } from "react";
 import { useUser } from "./UserContext";
+import { fetchApi } from "../utils/api";
 
 // Context
 const DataContext = createContext();
 
-const SERVER_URL = import.meta.env.PROD ? (import.meta.env.VITE_SERVER_URL || '') : '';
-
 // Provider
 export const DataProvider = ({ children }) => {
 
-    const { isAdmin } = useUser();
+    const { user, isAdmin } = useUser();
 
     const [projects, setProjects] = useState([]);
     const [education, setEducation] = useState([]);
@@ -23,8 +22,8 @@ export const DataProvider = ({ children }) => {
             setProjects(projectsData);
             setEducation(educationData);
         }
-        fetchData();
-    }, [isAdmin]);
+        if (user) fetchData();
+    }, [user]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,9 +41,8 @@ export const DataProvider = ({ children }) => {
 };
 
 const getProjects = async () => {
-    const response =  await fetch(`${SERVER_URL}/api/projects`, {
+    const response =  await fetchApi(`/projects`, {
         method: 'GET',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -63,9 +61,8 @@ const getProjects = async () => {
 };
 
 const getEducation = async () => {
-    const response = await fetch(`${SERVER_URL}/api/education`, {
+    const response = await fetchApi(`/education`, {
         method: 'GET',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -84,12 +81,11 @@ const getEducation = async () => {
 };
 
 const getContacts = async () => {
-    const response = await fetch(`${SERVER_URL}/api/contacts`, {
+    const response = await fetchApi(`/contacts`, {
             method: 'GET',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())
