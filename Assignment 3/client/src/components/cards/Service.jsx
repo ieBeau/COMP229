@@ -24,10 +24,6 @@ import ButtonEdit from '../buttons/ButtonEdit';
 export default function Service({ id, title, descriptions, image = "/logo.svg", url = "", onClickEdit, size = 125 }) {
 
     const { isAdmin } = useUser();
-
-    // // Clamp size between 50 and 125 to center images
-    // if (size > 125) size = 125;
-    // else if (size < 50) size = 50;
     
     // Default image if none provided
     if (!image) image = "/logo.svg";

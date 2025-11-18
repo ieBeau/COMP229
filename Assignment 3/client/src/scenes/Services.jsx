@@ -24,13 +24,6 @@ import Service from "../components/cards/Service.jsx";
 import ServiceCreate from '../components/cards/ServiceCreate.jsx';
 import ServiceEdit from '../components/cards/ServiceEdit.jsx';
 
-// import logoWebDev from '../assets/images/services/service-web-dev.png';
-// import logoMobileDev from '../assets/images/services/service-mobile-dev.png';
-// import logoBackendDev from '../assets/images/services/service-backend-dev.png';
-// import logoFullstackDev from '../assets/images/services/service-fullstack-dev.png';
-// import logoDatabase from '../assets/images/services/service-database.png';
-// import logoCloudComputing from '../assets/images/services/service-cloud-computing.png';
-
 export default function Services () {
     
     const { isAdmin } = useUser();

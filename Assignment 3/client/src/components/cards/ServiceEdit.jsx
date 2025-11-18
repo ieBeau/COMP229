@@ -3,7 +3,6 @@ import '../../styles/components/cards/ServiceEdit.css';
 import { useEffect, useState } from "react";
 
 import { fetchApi } from '../../utils/api';
-
 import { useData } from '../../context/DataContext';
 
 export default function ServiceEdit ({ service, onClose }) {
