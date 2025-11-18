@@ -1,0 +1,68 @@
+.contact-message-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.contact-message-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 95vh;
+}
+
+.contact-message-container .close-button {
+    align-self: center;
+}
+
+.contact-message-container .container{
+    background-color: rgb(11, 11, 11);
+    border: 1px solid rgb(255, 212, 121);
+    padding: 25px;
+    z-index: 20;
+    border-radius: 15px;
+    width: 30vw;
+    min-width: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,100,100,0.6) transparent;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,100,100,0.6) transparent;
+    max-height: 73vh;
+    padding-right: 8px;
+    border-radius: 15px;
+}
+
+/* WebKit browsers for scrollbar */
+.messages-list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.messages-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+.messages-list::-webkit-scrollbar-thumb {
+    background-color: rgba(100,100,100,0.6);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+.messages-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80,80,80,0.85);
+}

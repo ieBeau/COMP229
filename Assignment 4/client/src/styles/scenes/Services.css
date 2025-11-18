@@ -1,0 +1,29 @@
+.services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.services .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    max-width: 1700px;
+    background-color: rgb(30, 30, 30);
+    padding: 40px; 
+    border-radius: 10px;
+    gap: 40px;
+}
+
+.services .placeholder {
+    color: white;
+    font-size: 24px;
+}
+
+@media (max-width: 1750px) {
+    .services .list {
+        grid-template-columns: 1fr;
+        width: 80%;
+    }
+}
+

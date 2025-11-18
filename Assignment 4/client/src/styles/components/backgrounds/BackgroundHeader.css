@@ -1,0 +1,39 @@
+.header-background { 
+    position: absolute; 
+    align-self: center;
+    width: 110%;
+    top: -30px;
+    left: -30px;
+    height: 290px;
+    overflow: hidden; 
+    z-index: -1; 
+}
+
+.shape-layout {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+}
+
+.hexagon {
+    fill: #262626;
+    stroke: #1f1f1fff;
+}
+
+.animated-light {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 233,0.2) 60%, transparent 100%);
+    box-shadow: 0 0 40px 20px rgba(255, 255, 233, 0.3);
+}
+
+/* @media (prefers-color-scheme: light) {
+  .hexagon {
+    fill: #e0e0e0;
+    stroke: #c0c0c0ff;
+  }
+
+  .animated-light {
+    background: radial-gradient(circle, rgba(78, 78, 76, 0.7) 0%, rgba(0, 0, 0, 0.2) 90%, transparent 100%);
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.3);
+  }
+} */

@@ -1,0 +1,162 @@
+.create-school-backdrop {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.create-school-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 95vh;
+}
+
+.create-school-container .close-button {
+    align-self: center;
+}
+
+.create-school-container .form-container {
+    background-color: rgb(11, 11, 11);
+    border: 1px solid rgb(255, 212, 121);
+    padding: 25px;
+    z-index: 20;
+    border-radius: 15px;
+    width: 30vw;
+    min-width: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,100,100,0.6) transparent;
+}
+
+.create-school-container .school-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-school-container .two-col-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: left;
+    max-width: 100%;
+}
+
+.create-school-container .two-col-container > * {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.create-school-container .two-col-container .col-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-school-container .school-form label { 
+    font-weight: bold; 
+    text-align: left;
+}
+
+.create-school-container .school-form input, 
+.create-school-container .school-form textarea {
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    color: white;
+    background-color: rgb(30, 30, 30);
+    border-radius: 4px; 
+    font-size: 16px; 
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.create-school-container .school-form input:hover {
+    box-shadow: 0 0 0 1px rgb(255, 212, 121) inset;
+    color: rgb(255, 212, 121);
+}
+
+.create-school-container .school-form label:has(+ input:hover) {
+    color: rgb(255, 212, 121);
+}
+
+.create-school-container .school-image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.create-school-container .school-image-button {
+    display: flex;
+    padding: 8px 12px;
+    background: #007acc;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.create-school-container .school-image-button:hover {
+    background: #005fa3;
+    border: none;
+    box-shadow: inset 0 0 0 1px #007ed7;
+}
+
+.create-school-container .new-school-image-container {
+    display: flex;
+    align-self: center;
+    border-radius: 8px;
+    overflow: hidden
+}
+
+.create-school-container #school-image-input {
+    display: none;
+}
+
+
+.create-school-container #new-school-image-preview {
+    display: block;
+    max-width: 200px;
+    max-height: 120px;
+    align-self: center;
+    border-radius: 8px;
+}
+
+.create-school-container #new-school-image-name {
+    text-align: center;
+    font-size: 1em;
+    color: #ccc;
+    overflow-wrap: break-word;
+}
+
+/* WebKit browsers for scrollbar */
+.messages-list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.messages-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+.messages-list::-webkit-scrollbar-thumb {
+    background-color: rgba(100,100,100,0.6);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+.messages-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80,80,80,0.85);
+}
