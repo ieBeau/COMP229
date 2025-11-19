@@ -1,6 +1,13 @@
 import config from "./config/config.js";
 import app from "./express.js";
 import mongoose from "mongoose";
+import express from "express";
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoUri, {
@@ -17,6 +24,11 @@ mongoose.connection.on('error', () => {
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to My Portfolio application." });
+});
+
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
 app.listen(config.port, (err) => {
