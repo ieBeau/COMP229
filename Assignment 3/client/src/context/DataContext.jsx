@@ -53,10 +53,7 @@ const getProjects = async () => {
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Projects fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -72,10 +69,7 @@ const getEducation = async () => {
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Education fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -91,10 +85,7 @@ const getServices = async () => {
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Services fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -109,10 +100,7 @@ const getContacts = async () => {
             }
         })
         .then(response => response.json())
-        .then(data => {
-            console.log('Contacts fetched!');
-            return data;
-        })
+        .then(data => data)
         .catch(error => {
             console.error('Error:', error);
         });
