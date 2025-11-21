@@ -27,7 +27,6 @@ export const DataProvider = ({ children }) => {
             setServices(servicesData);
             setIsLoading(false);
         }
-        console.log(user)
         if (user) fetchData();
     }, [user]);
 
@@ -47,18 +46,16 @@ export const DataProvider = ({ children }) => {
 };
 
 const getProjects = async () => {
-    console.log(localStorage.getItem('token'))
     const response =  await fetchApi(`/projects`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
     .then(data => {
         console.log('Projects fetched!');
-        console.log(data);
         return data;
     })
     .catch(error => {
@@ -73,7 +70,7 @@ const getEducation = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -93,7 +90,7 @@ const getServices = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -112,7 +109,7 @@ const getContacts = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())
