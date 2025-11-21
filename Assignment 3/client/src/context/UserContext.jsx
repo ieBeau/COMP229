@@ -121,6 +121,9 @@ export const UserProvider = ({ children }) => {
                     'Content-Type': 'application/json'
                 }
             });
+
+            if (!response.ok) return null;
+            
             const data = await response.json();
             return data.user;
         } catch (err) {

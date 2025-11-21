@@ -40,7 +40,7 @@ const signout = (req, res) => {
 const validate = (req, res) => {
     try {
         const token = req.cookies.t;
-        if (!token) return res.status(401).json({ error: "No token provided" });
+        if (!token) return res;
 
         const verify = verifyToken(token);
         if (!verify) return res.status(401).json({ error: "Invalid token" });
