@@ -5,18 +5,18 @@ import config from '../config/config.js'
 const requireSignin = (req, res, next) => {
     const token = req.cookies.t;
 
-    if (!token) return res.status(401).json({ error: "Unauthorized", token });
+    if (!token) return res.status(401).json({ error: "Unauthorized" });
 
 
     try {
         jwt.verify(token, config.jwtSecret, (err, decoded) => {
-            if (err) return res.status(401).json({ error: "Unauthorized", err });
+            if (err) return res.status(401).json({ error: "Unauthorized" });
 
             req.auth = decoded;
             next();
         });
     } catch (err) {
-        return res.status(401).json({ error: "Unauthorized", catchError: err });
+        return res.status(401).json({ error: "Unauthorized" });
     }
 };
 

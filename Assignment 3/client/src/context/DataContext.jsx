@@ -50,7 +50,7 @@ const getProjects = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -70,7 +70,7 @@ const getEducation = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -90,7 +90,7 @@ const getServices = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     })
     .then(response => response.json())
@@ -109,7 +109,7 @@ const getContacts = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(response => response.json())
