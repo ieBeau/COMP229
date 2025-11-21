@@ -14,12 +14,6 @@ import contactRoutes from './routes/contact.route.js';
 
 const app = express();
 
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(compress());
-app.use(helmet());
 app.use(cors({
     origin: [
         'http://localhost:5173', 
@@ -27,6 +21,13 @@ app.use(cors({
     ],
     credentials: true
 }));
+
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(compress());
+app.use(helmet());
 
 app.use('/', authRoutes);
 app.use('/', userRoutes);

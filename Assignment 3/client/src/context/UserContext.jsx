@@ -9,19 +9,16 @@ const UserContext = createContext();
 // Provider
 export const UserProvider = ({ children }) => {
     
-    const storeUserToLocalStorage = (user, token) => {
-        localStorage.setItem('token', token);
+    const storeUserToLocalStorage = (user) => {
         localStorage.setItem('username', user.name);
         localStorage.setItem('email', user.email);
         localStorage.setItem('admin', user.admin);
     }
 
     const clearUserFromLocalStorage = () => {
-        localStorage.removeItem('token');
         localStorage.removeItem('username');
         localStorage.removeItem('email');
         localStorage.removeItem('admin');
-        document.cookie = `t=; expires=${new Date(0).toUTCString()}; Max-Age=0; path=/`;
         return null;
     }
 
@@ -39,7 +36,7 @@ export const UserProvider = ({ children }) => {
         const validateUser = async () => {
             const user = await validateToken();
 
-            if (!user || user.exp * 1000 < Date.now()) return logout();
+            if (!user) return logout();
 
             setUser(getUserFromLocalStorage());
         };
@@ -64,11 +61,10 @@ export const UserProvider = ({ children }) => {
             if (data.error) throw new Error(data.error);
 
             const userData = data.user;
-            const tokenData = data.token;
 
-            storeUserToLocalStorage(userData, tokenData);
+            storeUserToLocalStorage(userData);
 
-            if (tokenData && userData.name) {
+            if (userData.name) {
                 setUser({ username: userData.name, email: userData.email, admin: userData.admin });
                 return true;
             }

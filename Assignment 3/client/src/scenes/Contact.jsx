@@ -18,20 +18,24 @@ import { useState } from 'react';
 
 import { fetchApi } from '../utils/api';
 import { useUser } from '../context/UserContext';
+import { useData } from '../context/DataContext';
 
 import ContactMessages from '../components/misc/ContactMessages';
 
 export default function Contact () {
 
     const { user, isAdmin } = useUser();
+    const { setContacts } = useData();
 
-    const [form, setForm] = useState({
+    const defaultForm = {
         firstname: user?.username.split(' ')[0] || '',
         lastname: user?.username.split(' ')[1] || '',
         phone: '',
         email: user?.email || '',
         message: ''
-    });
+    };
+
+    const [form, setForm] = useState(defaultForm);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,13 +62,9 @@ export default function Contact () {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            setForm({
-                firstname: '',
-                lastname: '',
-                phone: '',
-                email: '',
-                message: ''
-            });
+
+            setContacts(prevContacts => [...prevContacts, data]);
+            setForm(defaultForm);
         })
         .catch(error => {
             console.error('Error:', error);

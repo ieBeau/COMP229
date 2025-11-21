@@ -46,6 +46,9 @@
     max-height: 73vh;
     padding-right: 8px;
     border-radius: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* WebKit browsers for scrollbar */
