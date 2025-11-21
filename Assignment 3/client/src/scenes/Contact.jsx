@@ -24,9 +24,11 @@ import ContactMessages from '../components/misc/ContactMessages';
 
 export default function Contact () {
 
+    const notificationEl = document.getElementById('notification');
+
     const { user, isAdmin } = useUser();
     const { setContacts } = useData();
-
+    
     const defaultForm = {
         firstname: user?.username.split(' ')[0] || '',
         lastname: user?.username.split(' ')[1] || '',
@@ -43,15 +45,21 @@ export default function Contact () {
             ...prev,
             [name]: value
         }));
+        notificationEl.hidden = true;
     };
+
+    const [sendingMessage, setSendingMessage] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        setSendingMessage(true);
+        const notificationEl = document.getElementById('notification');
+
         const formData = new FormData();
         formData.append("firstname", form.firstname);
         formData.append("lastname", form.lastname);
-        formData.append("phone", form.phone.trim() === '' ? null : form.phone);
+        if (form.phone.trim() !== '') formData.append("phone", form.phone.trim());
         formData.append("email", form.email);
         formData.append("message", form.message);
 
@@ -61,13 +69,27 @@ export default function Contact () {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-
             setContacts(prevContacts => [...prevContacts, data]);
             setForm(defaultForm);
+
+            notificationEl.innerText = "Message sent successfully!";
+            notificationEl.style.background = "rgba(22, 112, 0, 1)";
         })
         .catch(error => {
             console.error('Error:', error);
+
+            notificationEl.innerText = "Failed to send message.";
+            notificationEl.style.background = "rgb(170, 0, 0)";
+        })
+        .finally(() => {
+            setSendingMessage(false);
+
+            if (notificationEl) {
+                notificationEl.hidden = false;
+                setTimeout(() => {
+                    notificationEl.hidden = true;
+                }, 3000);
+            }
         });
     };
 
@@ -144,7 +166,8 @@ export default function Contact () {
                         required
                     ></textarea>
 
-                    <button type="submit">Send</button>
+                    <button type="submit">{sendingMessage ? "Sending..." : "Send"}</button>
+                    <span id='notification' hidden></span>
                 </form>
             </div>
         </div>
