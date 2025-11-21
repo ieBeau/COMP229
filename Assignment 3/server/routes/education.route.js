@@ -9,8 +9,11 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
+// Public routes
 router.get('/api/education/', authMiddleware.requireSignin, educationController.getAllEducation);
 router.get('/api/education/:id', authMiddleware.requireSignin, educationController.getEducation);
+
+// Protected routes
 router.post('/api/education/', upload.single('image'), authMiddleware.requireSignin, authMiddleware.hasAuthorization, educationController.createEducation);
 router.put('/api/education/:id', upload.single('image'), authMiddleware.requireSignin, authMiddleware.hasAuthorization, educationController.updateEducation);
 router.delete('/api/education/:id', authMiddleware.requireSignin, authMiddleware.hasAuthorization, educationController.deleteEducation);

@@ -9,8 +9,11 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
+// Public routes
 router.get('/api/projects/', authMiddleware.requireSignin, projectController.getAllProjects); 
 router.get('/api/projects/:id', authMiddleware.requireSignin, projectController.getProject);
+
+// Protected routes
 router.post('/api/projects/', upload.single('image'), authMiddleware.requireSignin, authMiddleware.hasAuthorization, projectController.createProject);
 router.put('/api/projects/:id', upload.single('image'), authMiddleware.requireSignin, authMiddleware.hasAuthorization, projectController.updateProject);
 router.delete('/api/projects/:id', authMiddleware.requireSignin, authMiddleware.hasAuthorization, projectController.deleteProject);

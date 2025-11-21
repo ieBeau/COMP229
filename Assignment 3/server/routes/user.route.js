@@ -4,10 +4,14 @@ import authMiddleware from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
+// Public route
 router.post('/api/users/', userController.createUser);
 
+// Public routes requiring signin
 router.get('/api/users/', authMiddleware.requireSignin, userController.getAllUsers);
 router.get('/api/users/:id', authMiddleware.requireSignin, userController.getUser);
+
+// Protected routes
 router.put('/api/users/:id', authMiddleware.requireSignin, authMiddleware.hasAuthorization, userController.updateUser);
 router.delete('/api/users/:id', authMiddleware.requireSignin, authMiddleware.hasAuthorization, userController.deleteUser);
 router.delete('/api/users/', authMiddleware.requireSignin, authMiddleware.hasAuthorization, userController.deleteAllUsers);
