@@ -49,8 +49,7 @@ const getProjects = async () => {
     const response =  await fetchApi(`/projects`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
@@ -69,8 +68,7 @@ const getEducation = async () => {
     const response = await fetchApi(`/education`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
@@ -89,8 +87,7 @@ const getServices = async () => {
     const response = await fetchApi(`/services`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
@@ -108,8 +105,7 @@ const getContacts = async () => {
     const response = await fetchApi(`/contacts`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())

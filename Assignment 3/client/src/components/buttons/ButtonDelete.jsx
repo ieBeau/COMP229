@@ -24,8 +24,7 @@ export default function ButtonDelete({ id, type }) {
         fetchApi(`/${type}/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())

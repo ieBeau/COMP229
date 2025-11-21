@@ -81,8 +81,7 @@ export const UserProvider = ({ children }) => {
         fetchAuth('/signout', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())
@@ -123,8 +122,7 @@ export const UserProvider = ({ children }) => {
             const response = await fetchAuth(`/validate`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Content-Type': 'application/json'
                 }
             });
             const data = await response.json();
