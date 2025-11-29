@@ -37,8 +37,7 @@ const app = express();
 
 app.use(cors({
     origin: [
-        // 'http://localhost:5173', 
-        // 'https://moreau-portfolio.onrender.com'
+        'https://moreau-portfolio.onrender.com'
     ],
     credentials: true
 }));
