@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import { bufferImage } from '../utils/bufferImage.js';
 
 import EducationModel from "../models/education.model.js";
 
@@ -41,28 +41,13 @@ const getEducation = async (req, res) => {
 
 const createEducation = async (req, res) => {
     try {
-        let imageBuffer;
-
-        if (req.file) {
-            if (req.file.mimetype === 'image/png') {
-                // Resize png image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .png({ compressionLevel: 8 })
-                    .toBuffer();
-            } else if (req.file.mimetype === 'image/jpeg') {
-                // Resize jpeg image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .jpeg({ quality: 70 })
-                    .toBuffer();
-            }
-        }
+        let buffer;
+        if (req.file) buffer = await bufferImage(req.file); 
 
         // Create buffer to store image
         const newEducation = new EducationModel({
             ...req.body,
-            image: imageBuffer ? { data: imageBuffer, contentType: req.file.mimetype } : null
+            image: buffer ? { data: buffer, contentType: req.file.mimetype } : null
         });
 
         await newEducation.save();
@@ -76,7 +61,7 @@ const createEducation = async (req, res) => {
         // Unbuffer image for response
         const education = {
             ...formattedEducation,
-            image: imageBuffer
+            image: buffer
                 ? `data:${newEducation.image.contentType};base64,${newEducation.image.data.toString('base64')}`
                 : null
         };
@@ -89,23 +74,8 @@ const createEducation = async (req, res) => {
 
 const updateEducation = async (req, res) => {
     try {
-        let imageBuffer;
-
-        if (req.file) {
-            if (req.file.mimetype === 'image/png') {
-                // Resize png image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .png({ compressionLevel: 8 })
-                    .toBuffer();
-            } else if (req.file.mimetype === 'image/jpeg') {
-                // Resize jpeg image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .jpeg({ quality: 70 })
-                    .toBuffer();
-            }
-        }
+        let buffer;
+        if (req.file) buffer = await bufferImage(req.file); 
 
         const updatedEducation = await EducationModel.findByIdAndUpdate(
             req.params.id, 
@@ -127,7 +97,7 @@ const updateEducation = async (req, res) => {
         // Unbuffer image for response
         const education = {
             ...formattedEducation,
-            image: imageBuffer
+            image: buffer
                 ? `data:${updatedEducation.image.contentType};base64,${updatedEducation.image.data.toString('base64')}`
                 : updatedEducation.image.toObject() ? req.body.image : null
         };

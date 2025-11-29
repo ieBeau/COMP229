@@ -79,31 +79,6 @@ export default function Education () {
                         )
                     )
                 }
-
-                {/* <School 
-                    name="Centennial College"
-                    degree="Advanced Diploma"
-                    program="Software Engineering Technology (Co-op)"
-                    studentGPA="4.5 (98%)"
-                    schoolGPA="4.5"
-                    started="September 2024"
-                    graduation="December 2027"
-                    graduated={0}
-                    location="Toronto, ON"
-                    image={logoCentennialCollege}
-                    url="https://www.centennialcollege.ca/programs-courses/full-time/software-engineering-technology-online"
-                />
-                <School 
-                    name="Seneca Polytechnic"
-                    degree="Diploma"
-                    program="Acting for Camera and Voice"
-                    started="September 2013"
-                    graduation="April 2015"
-                    graduated={1}
-                    location="Toronto, ON"
-                    image={logoSenecaCollege}
-                    url="https://www.senecapolytechnic.ca/programs/fulltime/ACV.html"
-                /> */}
             </div>
         </div>
     )

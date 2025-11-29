@@ -49,15 +49,11 @@ const getProjects = async () => {
     const response =  await fetchApi(`/projects`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Projects fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -69,15 +65,11 @@ const getEducation = async () => {
     const response = await fetchApi(`/education`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Education fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -89,15 +81,11 @@ const getServices = async () => {
     const response = await fetchApi(`/services`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('Services fetched!');
-        return data;
-    })
+    .then(data => data)
     .catch(error => {
         console.error('Error:', error);
     });
@@ -108,15 +96,11 @@ const getContacts = async () => {
     const response = await fetchApi(`/contacts`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())
-        .then(data => {
-            console.log('Contacts fetched!');
-            return data;
-        })
+        .then(data => data)
         .catch(error => {
             console.error('Error:', error);
         });

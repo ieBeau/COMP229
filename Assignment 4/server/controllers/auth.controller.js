@@ -1,6 +1,7 @@
 import { generateToken, verifyToken } from '../utils/jwt.js'
 
 import User from '../models/user.model.js'
+import config from '../config/config.js';
 
 const signin = async (req, res) => {
     try {
@@ -12,7 +13,10 @@ const signin = async (req, res) => {
         const token = generateToken(user);
 
         const cookieOptions = {
-            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+            httpOnly: true,
+            secure: config.env === 'production',
+            sameSite: config.env === 'production' ? 'none' : 'lax',
         };
 
         res.cookie('t', token, cookieOptions);
@@ -36,7 +40,11 @@ const signout = (req, res) => {
 const validate = (req, res) => {
     try {
         const token = req.cookies.t;
+        if (!token) return res;
+
         const verify = verifyToken(token);
+        if (!verify) return res.status(401).json({ error: "Invalid token" });
+
         return res.status(200).json({ user: verify });
     } catch (err) {
         return res.status(401).json({ error: "Invalid token" });

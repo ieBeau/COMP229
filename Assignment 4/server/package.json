@@ -6,8 +6,8 @@
   "author": "Blessing",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "body-parser": "^2.2.0",

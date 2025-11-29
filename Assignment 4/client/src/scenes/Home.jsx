@@ -27,9 +27,9 @@ export default function Home () {
             <div className="mission-statement">
                 <div className='mission-title'>Mission Statement</div>
                 
-                My mission is to design and develop innovative, reliable, and scalable software solutions that solve real-world problems. 
-                I strive to combine technical expertise with creativity and collaboration, building systems that not only perform but also create meaningful impact. 
-                Guided by values of respect, fairness, and continuous learning, I aim to grow as a professional and ultimately contribute to groundbreaking technologies that shape the future of how people connect and innovate.
+                Pierre's mission is to design and develop innovative, reliable, and scalable software solutions that solve real-world problems. 
+                He strives to combine technical expertise with creativity and collaboration, building systems that not only perform but also create meaningful impact. 
+                Guided by values of respect, fairness, and continuous learning, he aims to grow as a professional and ultimately contribute to groundbreaking technologies that shape the future of how people connect and innovate.
             </div>
 
             <button className='learn-more' onClick={() => window.location.href = '/about'}>Learn More</button>

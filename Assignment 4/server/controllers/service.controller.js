@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import { bufferImage } from '../utils/bufferImage.js';
 
 import ServiceModel from '../models/service.model.js'
 
@@ -40,29 +40,14 @@ const getService = async (req, res) => {
 
 const createService = async (req, res) => {
     try {
-        let imageBuffer;
-
-        if (req.file) {
-            if (req.file.mimetype === 'image/png') {
-                // Resize png image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .png({ compressionLevel: 8 })
-                    .toBuffer();
-            } else if (req.file.mimetype === 'image/jpeg') {
-                // Resize jpeg image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .jpeg({ quality: 70 })
-                    .toBuffer();
-            }
-        }
+        let buffer;
+        if (req.file) buffer = await bufferImage(req.file); 
 
         // Create buffer to store image
         const newService = new ServiceModel({
             ...req.body,
             descriptions: req.body.descriptions.split("\n,").map(desc => desc.trim()),
-            image: imageBuffer ? { data: imageBuffer, contentType: req.file.mimetype } : null
+            image: buffer ? { data: buffer, contentType: req.file.mimetype } : null
         });
 
         await newService.save();
@@ -76,7 +61,7 @@ const createService = async (req, res) => {
         // Unbuffer image for response
         const service = {
             ...formattedService,
-            image: imageBuffer
+            image: buffer
                 ? `data:${newService.image.contentType};base64,${newService.image.data.toString('base64')}`
                 : null
         };
@@ -89,23 +74,8 @@ const createService = async (req, res) => {
 
 const updateService = async (req, res) => {
     try {
-        let imageBuffer;
-
-        if (req.file) {
-            if (req.file.mimetype === 'image/png') {
-                // Resize png image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .png({ compressionLevel: 8 })
-                    .toBuffer();
-            } else if (req.file.mimetype === 'image/jpeg') {
-                // Resize jpeg image
-                imageBuffer = await sharp(req.file.buffer)
-                    .resize({ width: 500, height: 500, fit: 'inside' })
-                    .jpeg({ quality: 70 })
-                    .toBuffer();
-            }
-        }
+        let buffer;
+        if (req.file) buffer = await bufferImage(req.file); 
 
         const updatedService = await ServiceModel.findByIdAndUpdate(
             req.params.id, 
@@ -128,7 +98,7 @@ const updateService = async (req, res) => {
         // Unbuffer image for response
         const service = {
             ...formattedService,
-            image: imageBuffer
+            image: buffer
                 ? `data:${updatedService.image.contentType};base64,${updatedService.image.data.toString('base64')}`
                 : updatedService.image.toObject() ? req.body.image : null
         };
