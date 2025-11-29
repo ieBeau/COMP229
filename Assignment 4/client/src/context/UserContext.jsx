@@ -1,7 +1,7 @@
 // UserContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { fetchAuth } from "../utils/api";
+import { fetchApi, fetchAuth } from "../utils/api";
 
 // Context
 const UserContext = createContext();
@@ -10,7 +10,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     
     const storeUserToLocalStorage = (user) => {
-        localStorage.setItem('username', user.name);
+        localStorage.setItem('username', user.username);
         localStorage.setItem('email', user.email);
         localStorage.setItem('admin', user.admin);
     }
@@ -64,8 +64,8 @@ export const UserProvider = ({ children }) => {
 
             storeUserToLocalStorage(userData);
 
-            if (userData.name) {
-                setUser({ username: userData.name, email: userData.email, admin: userData.admin });
+            if (userData.username) {
+                setUser({ username: userData.username, email: userData.email, admin: userData.admin });
                 return true;
             }
         });
@@ -91,13 +91,13 @@ export const UserProvider = ({ children }) => {
     }
 
     const register = (form) => {
-        const response = fetchAuth(`/users`, {
+        const response = fetchApi(`/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: form.name,
+                username: form.username,
                 email: form.email,
                 password: form.password
             })

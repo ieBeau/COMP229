@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Login from '../components/login';
+import Login from '../scenes/login';
 import { createMockLocalStorage } from './test-helpers';
 
 const mockNavigate = jest.fn();
