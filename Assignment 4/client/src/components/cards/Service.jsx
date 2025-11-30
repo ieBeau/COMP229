@@ -7,7 +7,7 @@
  * @param {Object} props - Component props.
  * @param {string} props.name - The name of the service.
  * @param {string[]} props.descriptions - An array of description strings for the service.
- * @param {string} [props.image="/logo.svg"] - The image URL for the service (defaults to "/logo.svg").
+ * @param {string} [props.image="/logos/logo.svg"] - The image URL for the service (defaults to "/logos/logo.svg").
  * @param {string} [props.url=""] - The URL to open when the card is clicked (optional).
  * @param {number} [props.size=125] - The size (width and height) of the image in pixels (clamped between 50 and 125).
  * @returns {JSX.Element} The rendered service card with image, name, and descriptions.
@@ -26,7 +26,7 @@ export default function Service({ id, title, descriptions, image = "/logo.svg", 
     const { isAdmin } = useUser();
     
     // Default image if none provided
-    if (!image) image = "/logo.svg";
+    if (!image) image = "/logos/logo.svg";
     
     const marginHelper = `${(150 - size) / 2}px`;
 

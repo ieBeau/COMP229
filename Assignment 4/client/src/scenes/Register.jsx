@@ -1,3 +1,24 @@
+/**
+ * Register component renders a user registration page with a form for username, email, and password.
+ * 
+ * The component manages local form state, handles input changes, validates required fields, and
+ * submits the form via a register function obtained from the UserContext. On successful registration
+ * it navigates the user to the home route. The component also imports associated styles for layout.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered registration page containing username, email, and password inputs and a submit button.
+ * 
+ * @remarks
+ * - Uses React useState for form state management.
+ * - Uses react-router-dom useNavigate for post-registration navigation.
+ * - Uses a register method from a UserContext (via useUser) which is expected to return a Promise<boolean> indicating success.
+ * - Prevents submission if any required field is empty.
+ * 
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/register" element={<Register />} />
+ */
+
 import '../styles/scenes/Register.css';
 
 import { useNavigate } from 'react-router-dom';
@@ -26,6 +47,8 @@ export default function Register () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!form.username || !form.email || !form.password) return;
 
         register(form)
         .then(success => {

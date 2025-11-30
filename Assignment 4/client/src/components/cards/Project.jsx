@@ -8,7 +8,7 @@
  * @param {Object} props - Component props.
  * @param {string} props.name - The name of the project.
  * @param {string[]} props.descriptions - An array of description strings for the project.
- * @param {string} [props.image="/logo.svg"] - The image URL for the project (defaults to "/logo.svg").
+ * @param {string} [props.image="/logos/logo.svg"] - The image URL for the project (defaults to "/logos/logo.svg").
  * @param {string} [props.url=""] - The URL to open when the card is clicked (optional).
  * @param {number} [props.size=125] - The size (width and height) of the project image in pixels (clamped between 50 and 125).
  * @returns {JSX.Element} The rendered project card with image, name, and descriptions.
@@ -26,7 +26,7 @@ export default function Project({ id, title, descriptions, image, url = "", onCl
     const { isAdmin } = useUser();
     
     // Default image if none provided
-    if (!image) image = "/logo.svg";
+    if (!image) image = "/logos/logo.svg";
     
     const marginHelper = `${(150 - size) / 2}px`;
 

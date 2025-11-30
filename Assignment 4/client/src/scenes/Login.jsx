@@ -1,3 +1,23 @@
+/**
+ * Login component renders a login page with an email and password form.
+ * 
+ * The component manages local form state for email and password, updates state on input change,
+ * and hides any previous "not found" error message when the user edits fields. On submit it calls
+ * the `login` function from UserContext; on successful login it navigates to the home route,
+ * and on failure it focuses the email input and displays an error message in the inline "not found" span.
+ * 
+ * The form uses semantic labels and required fields for accessibility, and the error message span is
+ * toggled via its `hidden` attribute. Navigation is handled via React Router's `useNavigate`.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered login page containing email and password inputs, a submit button,
+ * and an inline error message element.
+ * 
+ * @example
+ * // Usage in a React Router setup
+ * <Route path="/login" element={<Login />} />
+ */
+
 import '../styles/scenes/Login.css';
 
 import { useNavigate } from 'react-router-dom';

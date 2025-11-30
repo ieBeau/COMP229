@@ -14,8 +14,9 @@
 
 import '../styles/scenes/About.css';
 
-import headshot from '../assets/images/headshot.png'
 import PDF from '../components/misc/PDF.jsx';
+
+const photo = '/images/headshot.png';
 
 export default function About () {
 
@@ -25,7 +26,7 @@ export default function About () {
 
             <div className='summary-container'>
 
-                <img className='photo' src={headshot} alt="Pierre Moreau" /> 
+                <img className='photo' src={photo} alt="Pierre Moreau" /> 
 
                 <div className='summary'>
                     <p>
