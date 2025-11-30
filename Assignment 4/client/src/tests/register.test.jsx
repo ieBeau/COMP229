@@ -1,6 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Register from '../scenes/Register';
 import { createMockLocalStorage } from './test-helpers';
+
+import { UserProvider } from '../context/UserContext';
+import Register from '../scenes/Register';
 
 const mockNavigate = jest.fn();
 
@@ -25,14 +27,18 @@ describe('Register', () => {
   });
 
   test('lets the user fill out each field', () => {
-    render(<Register />);
+    render(
+      <UserProvider>
+        <Register />
+      </UserProvider>
+    );
 
     const usernameInput = screen.getByLabelText(/username/i);
-    const emailInput = screen.getByLabelText(/^email$/i);
+    const emailInput = screen.getByLabelText(/email/i);
     const passwordInput = screen.getByLabelText(/password/i);
 
-    // Step 1: show the component reacts to typing.
-    fireEvent.change(usernameInput, { target: { name: 'name', value: 'student' } });
+    // Step 1: show the component react to typing.
+    fireEvent.change(usernameInput, { target: { name: 'username', value: 'student' } });
     fireEvent.change(emailInput, { target: { name: 'email', value: 'student@test.com' } });
     fireEvent.change(passwordInput, { target: { name: 'password', value: '123456' } });
 
@@ -41,35 +47,55 @@ describe('Register', () => {
     expect(passwordInput).toHaveValue('123456');
   });
 
-  test('submits the form and saves the returned user', async () => {
-    const setUser = jest.fn();
+  test('submits the form, login and saves the returned user', async () => {
+    // Mock fetch by inspecting the requested URL so all in-component
+    // requests (validate -> register -> signin) are handled correctly.
+    global.fetch.mockImplementation((url, options) => {
+      if (String(url).includes('/validate')) {
+        // validate token called from useEffect when provider mounts
+        return Promise.resolve({ ok: false, json: async () => null });
+      }
 
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        token: 'new-token',
-        user: { username: 'student' }
-      })
+      if (String(url).includes('/api/users')) {
+        // register endpoint
+        return Promise.resolve({ ok: true, json: async () => ({}) });
+      }
+
+      if (String(url).includes('/auth/signin') || String(url).includes('/signin')) {
+        // signin endpoint called by register -> login
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({ token: 'new-token', user: { username: 'student', email: 'student@test.com' } })
+        });
+      }
+
+      // default fallback for any other fetch
+      return Promise.resolve({ ok: false, json: async () => null });
     });
 
-    render(<Register setUser={setUser} />);
+    render(
+      <UserProvider>
+        <Register />
+      </UserProvider>
+    );
 
     fireEvent.change(screen.getByLabelText(/username/i), { target: { name: 'username', value: 'student' } });
-    fireEvent.change(screen.getByLabelText(/^email$/i), { target: { name: 'email', value: 'student@test.com' } });
+    fireEvent.change(screen.getByLabelText(/email/i), { target: { name: 'email', value: 'student@test.com' } });
     fireEvent.change(screen.getByLabelText(/password/i), { target: { name: 'password', value: '123456' } });
 
     // Step 2: submit and expect a happy-path flow.
     fireEvent.click(screen.getByRole('button', { name: /register/i }));
 
+    // Wait for the register request to have been made
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith('/api/users', expect.objectContaining({
-        method: 'POST'
-      }));
+      expect(global.fetch).toHaveBeenCalledWith('/api/users', expect.objectContaining({ method: 'POST' }));
     });
 
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('token', 'new-token');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('username', 'student');
-    expect(setUser).toHaveBeenCalledWith({ username: 'student' });
-    expect(mockNavigate).toHaveBeenCalledWith('/');
+    // Then wait for the login flow to complete and localStorage to be written
+    await waitFor(() => {
+      expect(window.localStorage.setItem).toHaveBeenCalledWith('username', 'student');
+      expect(window.localStorage.setItem).toHaveBeenCalledWith('email', 'student@test.com');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
+    });
   });
 });

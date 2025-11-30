@@ -1,3 +1,37 @@
+/**
+ * UserContext provides authentication state and helper actions to the application.
+ *
+ * The UserProvider component maintains and exposes the current authenticated user (sourced from localStorage),
+ * an isAdmin flag, and methods for login, logout, and registration. On mount it attempts to validate an
+ * existing authentication token (via fetchAuth) and synchronizes localStorage with the React state.
+ *
+ * Behavior summary:
+ * - Persists user data (username, email, admin) to localStorage on successful sign-in.
+ * - Clears stored user data on sign-out.
+ * - Validates an existing session token on component mount and logs out if invalid.
+ * - Exposes convenience hook useUser() to consume the context in child components.
+ *
+ * Exposed context shape:
+ * - user: { username: string, email: string, admin: boolean } | null
+ * - isAdmin: boolean
+ * - login(form): Promise<boolean|any>  // posts credentials to /signin, stores user on success
+ * - logout(): void                     // calls /signout and clears state/storage
+ * - register(form): Promise<any>       // creates a user via /users then logs in
+ *
+ * @component
+ * @returns {JSX.Element} The UserContext.Provider wrapping children and providing auth state and actions.
+ *
+ * @example
+ * // Wrap the application with the provider
+ * <UserProvider>
+ *   <App />
+ * </UserProvider>
+ *
+ * @example
+ * // Consume the context in a component
+ * const { user, isAdmin, login, logout, register } = useUser();
+ */
+
 // UserContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -80,7 +114,6 @@ export const UserProvider = ({ children }) => {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
         .then(_ => {
             clearUserFromLocalStorage();
             setUser(null);

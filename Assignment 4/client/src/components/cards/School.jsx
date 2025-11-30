@@ -15,7 +15,7 @@
  * @param {string} props.graduation - The graduation date or expected graduation.
  * @param {boolean} props.graduated - Whether the student has graduated.
  * @param {string} props.location - The location of the school.
- * @param {string} [props.image="/logo.svg"] - The URL of the school's logo image (optional).
+ * @param {string} [props.image="/logos/logo.svg"] - The URL of the school's logo image (optional).
  * @param {string} [props.url=""] - The URL to the school's website (optional).
  * @returns {JSX.Element} The rendered school card with details and clickable link.
  * 
@@ -39,7 +39,7 @@ export default function School({ id, school, degree, program, studentGPA, school
     const graduated = new Date() >= new Date(end);
     
     // Default image if none provided
-    if (!image) image = "/logo.svg";
+    if (!image) image = "/logos/logo.svg";
     
     const formatMonthYear = (dateStr) => {
         if (!dateStr) return "";
