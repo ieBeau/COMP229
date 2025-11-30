@@ -38,9 +38,15 @@ export default function About () {
                         His projects span web, mobile, and backend systems, and he enjoys designing solutions that are both functional and scalable.
                     </p>
                     <p>
-                        Pierre values respect, fairness, and collaboration, and approaches every project with perseverance and a strong work ethic. 
-                        Looking ahead, his long-term goal is to become a Software Engineer at a company with a large infrastructure, where he hopes to contribute to large-scale, innovative technologies that make a big impact.
+                        Pierre values respect, fairness, and collaboration, and approaches every project with perseverance and a strong work ethic.
+                        Looking ahead, he hopes to join a large-scale tech company, specifically an organization from FAANG, where he can contribute to innovative, high-impact systems that serve millions of users worldwide.
                     </p>
+                    <p>
+                        He is currently onboarding as a Software Engineer at CIBC Capital Markets, where he is expanding his expertise in enterprise-level financial systems.
+                        In this role, he is gaining hands-on experience with large-scale, high-performance applications and deepening his understanding of the technologies that power modern capital markets.
+                        This opportunity allows him to apply his technical background in both software engineering and finance while contributing to impactful, real-world solutions used not only across the organization, but for clients and stakeholders in the financial industry.
+                    </p>
+
                 </div>
             </div>
 

@@ -14,23 +14,38 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.summary-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .summary {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    display: block;
     font-size: 1em;
 }
 
 .photo {
     width: 255px;
     height: auto;
-    margin: 0 25px 0 0;
+    margin: 0 25px 5px 0;
     border-radius: 8px;
     flex-shrink: 0;
     float: left;
 }
 
 .summary p {
-    margin: 0;
+    margin: 0 0 1rem 0;
+}
+
+@media (max-width: 700px) {
+    .photo {
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 180px;
+    }
+    .summary {
+        display: block;
+    }
 }
